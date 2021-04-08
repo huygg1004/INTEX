@@ -1,0 +1,17 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model RegisterBindingModel
+
+<form asp-action="Register" method="post">
+    <label asp-for="Email">Email Address</label>
+    <input asp-for="Email" />
+    <label asp-for="Password">Password</label>
+    <input asp-for="Password" />
+    <label asp-for="ConfirmPassword">Confirm Password</label>
+    <input asp-for="ConfirmPassword" />
+    <button type="submit">Sign Up</button><br /> <br />
+    <div asp-validation-summary="All"></div>
+</form>

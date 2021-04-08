@@ -40,6 +40,12 @@
                     <li class="nav-item">
                         <a asp-action="Index">Home</a>
                     </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a asp-action="TestForm">Edit Form</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

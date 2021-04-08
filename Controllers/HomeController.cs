@@ -6,23 +6,37 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Intex_app.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Intex_app.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        //public Token _token { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger)//, Token token)
         {
             _logger = logger;
+            //_token = token;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-
+        [HttpGet]
+        [Authorize]
+        public IActionResult TestForm()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Authorize]
+        public IActionResult TestForm(string t)
+        {
+            return View(t);
+        }
         public IActionResult Privacy()
         {
             return View();
