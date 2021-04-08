@@ -62,6 +62,7 @@ namespace Intex_app.Controllers
             //this would make sure the user confirmed their email address, but we don't have a dummy email we can use
             //if(user.EmailConfirmed)
             //{
+            
             if (valid)
             {
                 var claims = new List<Claim>();
@@ -97,6 +98,10 @@ namespace Intex_app.Controllers
             }
             else
             {
+                if(user != null)
+                {
+                    user.AccessFailedCount += 1;
+                }
                 return Unauthorized();
             }
             //}

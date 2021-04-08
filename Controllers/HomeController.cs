@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Intex_app.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Intex_app.Controllers
 {
@@ -14,10 +15,11 @@ namespace Intex_app.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         //public Token _token { get; set; }
-
-        public HomeController(ILogger<HomeController> logger)//, Token token)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager)//, Token token)
         {
             _logger = logger;
+            _userManager = userManager;
             //_token = token;
         }
 
@@ -33,9 +35,10 @@ namespace Intex_app.Controllers
         }
         [HttpPost]
         [Authorize]
-        public IActionResult TestForm(string t)
+        public async Task<IActionResult> TestForm(string test, string username)
         {
-            return View(t);
+            ApplicationUser user = await _userManager.FindByNameAsync(username);
+            return View();
         }
         public IActionResult Privacy()
         {

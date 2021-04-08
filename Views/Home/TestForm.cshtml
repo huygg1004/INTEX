@@ -3,16 +3,11 @@
 *@
 @{
 }
-@model string
-
-@if(Model != null)
-{
-    <p>this is what you entered @Model</p>
-}
 
 <form asp-action="TestForm" method="post">
     <label name="test">Test</label>
     <input name="test" type="text" />
+    <input hidden name="username" value = @User.Identity.Name />
     <button type="submit">Sweet</button><br /> <br />
     <div asp-validation-summary="All"></div>
 </form>
