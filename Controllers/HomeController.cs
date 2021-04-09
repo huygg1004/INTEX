@@ -28,7 +28,7 @@ namespace Intex_app.Controllers
             return View();
         }
 
-        public IActionResult ViewBurials()
+        public IActionResult ViewBurialsPublic()
         {
             //return View();
             return View();

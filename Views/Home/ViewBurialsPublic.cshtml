@@ -1,0 +1,468 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{ ViewBag.Title = "View Burial Site For Public Users"; }
+
+@*@model IEnumerable<Intex_app.Models.Burials>*@
+
+<header class="masthead" style="background-image: url('https://images2.minutemediacdn.com/image/upload/c_crop,h_1350,w_2400,x_0,y_340/v1571260067/shape/mentalfloss/603939-mummy_of_ukhhotep_son_of_hedjpu_met_dt11561.jpg?itok=UbK68ffp') ">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>BYU Fag el-Gamous Burial Information</h1>
+                    <span class="subheading">For General Users</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div>
+
+    <div class="container">
+        @*<div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-preview">*@
+
+        <h2>These are the current excavated burials by BYU researchers</h2>
+
+        <h3>Overall Site Location Information</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Burial ID</th>
+
+                    <th>Burial Location NS</th>
+
+                    <th>Low Pair NS</th>
+
+                    <th>High Pair NS</th>
+
+                    <th>Burial Location EW</th>
+
+                    <th>Low Pair EW</th>
+
+                    <th>High Pair EW</th>
+
+
+                </tr>
+            </thead>
+
+            @*displaying the actual submitted information*@
+            @*<tbody>
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.burial_location_NS</td>
+                <td>@x.low_pair_NS</td>
+                <td>@x.high_pair_NS</td>
+                <td>@x.burial_location_EW</td>
+                <td>@x.low_pair_EW</td>
+                <td>@x.high_pair_EW</td>
+
+
+            </tr>}
+
+
+                    </tbody>*@
+        </table>
+
+        <br />
+
+        <h3>Other Burial Site General Information</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Burial ID</th>
+
+                    <th>Burial Subplot</th>
+
+                    <th>Burial Depth</th>
+
+                    <th>South to Head</th>
+
+                    <th>South to feet</th>
+
+                    <th>East to Head</th>
+
+                    <th>East to Feet</th>
+
+                    <th>Burial Situation</th>
+
+                    <th>Length of Remains</th>
+
+                    <th>Burial Number</th>
+
+                    <th>Sample Number</th>
+
+
+                </tr>
+            </thead>
+
+            @*displaying the actual submitted information*@
+            @*<tbody>
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.burial_subplot</td>
+                <td>@x.burial_depth</td>
+                <td>@x.south_to_head</td>
+                <td>@x.south_to_feet</td>
+                <td>@x.east_to_head</td>
+                <td>@x.east_to_feet</td>
+                <td>@x.burial_situation</td>
+                <td>@x.length_of_remains</td>
+                <td>@x.burial_number</td>
+                <td>@x.sample_number</td>
+
+
+            </tr>}
+
+
+                    </tbody>*@
+        </table>
+
+        <br />
+
+        <h3>Mummies specific information</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Burial ID</th>
+
+                    <th>Gender GE</th>
+
+                    <th>GE function total</th>
+
+                    <th>Gender Body col</th>
+
+                </tr>
+            </thead>
+
+            @*displaying the actual submitted information*@
+            @*<tbody>
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
+
+
+                    </tbody>*@
+        </table>
+        <br />
+        <h3>Mummies osteological Information</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Burial ID</th>
+
+                    <th>Basilar Suture</th>
+
+                    <th>Ventral Arc</th>
+
+                    <th>Subpubic Angle</th>
+
+                    <th>Sciatic Notch</th>
+
+                    <th>Pubic Bone</th>
+
+                    <th>Preaur Sulcus</th>
+
+                    <th>medial_IP_ramus</th>
+
+                    <th>dorsal_pitting</th>
+
+                    <th>foreman_magnum</th>
+
+                    <th>femur_head</th>
+
+                    <th>humerus_head</th>
+
+                    <th>osteophytosis</th>
+
+                    <th>pubic_symphysis</th>
+
+                    <th>bone_length</th>
+
+
+
+
+
+                </tr>
+            </thead>
+
+            @*displaying the actual submitted information*@
+            @*<tbody>
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
+
+
+                    </tbody>*@
+        </table>
+
+        <br />
+
+        <h3>Mummies additional osteological information</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Burial ID</th>
+
+                    <th>medial_clavicle</th>
+
+                    <th>iliac_crest</th>
+
+                    <th>femur_diameter</th>
+
+                    <th>humerus</th>
+
+                    <th>femur_length</th>
+
+                    <th>humerus_length</th>
+
+                    <th>tibia_length</th>
+
+                    <th>robust</th>
+
+                    <th>supraorbital_ridges</th>
+
+                    <th>orbit_edge</th>
+
+                    <th>parietal_bossing</th>
+
+                    <th>gonian</th>
+
+                    <th>nuchal_crest</th>
+
+
+                </tr>
+            </thead>
+
+            @*displaying the actual submitted information*@
+            @*<tbody>
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
+
+
+                    </tbody>*@
+        </table>
+        <br />
+
+        <h3>Mummies additional osteological information part 2</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Burial ID</th>
+
+                    <th>zygomatic_crest</th>
+
+                    <th>cranial_suture</th>
+
+                    <th>maximum_cranial_length</th>
+
+                    <th>maximum_cranial_breadth</th>
+
+                    <th>basion_bregma_height</th>
+
+                    <th>basion_nasion</th>
+
+
+
+                </tr>
+            </thead>
+
+            @*displaying the actual submitted information*@
+            @*<tbody>
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
+
+
+                    </tbody>*@
+        </table>
+
+        <br />
+
+        <h3>Mummies additional osteological information part 3</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Burial ID</th>
+
+                    <th>basion_prosthion_length</th>
+
+                    <th>bizygomatic_diameter</th>
+
+                    <th>nasion_prosthion</th>
+
+                    <th>maximum_nasal_breadth</th>
+
+                    <th>interorbital_breadth</th>
+
+                </tr>
+            </thead>
+
+            @*displaying the actual submitted information*@
+            @*<tbody>
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
+
+
+                    </tbody>*@
+        </table>
+
+        <br />
+
+        <h3>Mummies miscellaneous Information</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Burial ID</th>
+
+                    <th>artifacts_description</th>
+
+                    <th>hair_color</th>
+
+                    <th>preservation_index</th>
+
+                    <th>hair_taken</th>
+
+                    <th>soft_tissue_taken</th>
+
+                    <th>bone_taken</th>
+
+                    <th>tooth_taken</th>
+
+                    <th>textile_taken</th>
+
+                    <th>description_of_taken</th>
+
+                </tr>
+            </thead>
+
+            @*displaying the actual submitted information*@
+            @*<tbody>
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
+
+
+                    </tbody>*@
+        </table>
+
+        <br />
+
+        <h3>Mummies miscellaneous Information Part 2</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Burial ID</th>
+
+                    <th>artifact_found</th>
+
+                    <th>estimate_age</th>
+
+                    <th>estimate_living_stature</th>
+
+                    <th>tooth_attrition</th>
+
+                    <th>tooth_eruption</th>
+
+                    <th>pathology_anomalies</th>
+
+                    <th>epiphyseal_union</th>
+
+                </tr>
+            </thead>
+
+            @*displaying the actual submitted information*@
+            @*<tbody>
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
+
+
+                    </tbody>*@
+        </table>
+
+        <br />
+
+        <h3>Mummies Excavation Discovery Time</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Burial ID</th>
+
+                    <th>year_found</th>
+
+                    <th>month_found</th>
+
+                    <th>day_found</th>
+
+                    <th>head_direction</th>
+
+                </tr>
+            </thead>
+
+            @*displaying the actual submitted information*@
+            @*<tbody>
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
+
+
+                    </tbody>*@
+        </table>
+
+
+
+    </div>
+            </div>
+        @*</div>
+    </div>
+</div>*@
