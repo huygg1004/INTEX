@@ -33,35 +33,37 @@ namespace Intex_app.Controllers
             //return View();
             return View();
         }
-
+        [Authorize]
         public IActionResult ViewBurialsResearchers()
         {
             //return View();
             return View();
         }
-
+        [Authorize]
         public IActionResult ResearchersTools()
         {
             //return View();
             return View();
         }
-
+        [Authorize]
         public IActionResult EnterFieldNotes()
         {
             //return View();
             return View();
         }
+        [Authorize]
         public IActionResult ViewFieldNotes()
         {
             //return View();
             return View();
         }
+        [Authorize]
         public IActionResult EnterData()
         {
             //return View();
             return View();
         }
-
+        [Authorize]
         public IActionResult ViewData()
         {
             //return View();
