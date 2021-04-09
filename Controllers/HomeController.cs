@@ -40,6 +40,33 @@ namespace Intex_app.Controllers
             return View();
         }
 
+        public IActionResult ResearchersTools()
+        {
+            //return View();
+            return View();
+        }
+
+        public IActionResult EnterFieldNotes()
+        {
+            //return View();
+            return View();
+        }
+        public IActionResult ViewFieldNotes()
+        {
+            //return View();
+            return View();
+        }
+        public IActionResult EnterData()
+        {
+            //return View();
+            return View();
+        }
+
+        public IActionResult ViewData()
+        {
+            //return View();
+            return View();
+        }
         [HttpGet]
         [Authorize]
         public IActionResult TestForm()

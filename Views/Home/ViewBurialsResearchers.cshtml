@@ -5,7 +5,7 @@
 
 @*@model IEnumerable<Intex_app.Models.Burials>*@
 
-<header class="masthead" style="background-image: url('https://images2.minutemediacdn.com/image/upload/c_crop,h_1350,w_2400,x_0,y_340/v1571260067/shape/mentalfloss/603939-mummy_of_ukhhotep_son_of_hedjpu_met_dt11561.jpg?itok=UbK68ffp') ">
+<header class="masthead" style="        background-image: url('https://media2.s-nbcnews.com/i/newscms/2020_40/3417220/201003-saqqaramummy-ha_45365538166fa95f6d079e749d51c2e6.jpg')">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
@@ -23,12 +23,14 @@
 
     <div class="container">
         @*<div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="post-preview">*@
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-preview">*@
 
         <h2>These are the current excavated burials by BYU researchers</h2>
 
         <h3>Researchers On Field Related Information</h3>
+
+        <a class="btn btn-primary" asp-action="ResearchersTools">Researchers Tools</a>
 
         <table>
             <thead>
@@ -51,21 +53,21 @@
 
             @*displaying the actual submitted information*@
             @*<tbody>
-                            @foreach (Intex_app.Models.Burials x in Model)
-                            {
-                <tr>
-                    <td>@x.burial_location_NS</td>
-                    <td>@x.low_pair_NS</td>
-                    <td>@x.high_pair_NS</td>
-                    <td>@x.burial_location_EW</td>
-                    <td>@x.low_pair_EW</td>
-                    <td>@x.high_pair_EW</td>
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.burial_location_NS</td>
+                <td>@x.low_pair_NS</td>
+                <td>@x.high_pair_NS</td>
+                <td>@x.burial_location_EW</td>
+                <td>@x.low_pair_EW</td>
+                <td>@x.high_pair_EW</td>
 
 
-                </tr>}
+            </tr>}
 
 
-                        </tbody>*@
+                    </tbody>*@
         </table>
 
         <br />
@@ -91,25 +93,25 @@
 
             @*displaying the actual submitted information*@
             @*<tbody>
-                            @foreach (Intex_app.Models.Burials x in Model)
-                            {
-                <tr>
-                    <td>@x.burial_subplot</td>
-                    <td>@x.burial_depth</td>
-                    <td>@x.south_to_head</td>
-                    <td>@x.south_to_feet</td>
-                    <td>@x.east_to_head</td>
-                    <td>@x.east_to_feet</td>
-                    <td>@x.burial_situation</td>
-                    <td>@x.length_of_remains</td>
-                    <td>@x.burial_number</td>
-                    <td>@x.sample_number</td>
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.burial_subplot</td>
+                <td>@x.burial_depth</td>
+                <td>@x.south_to_head</td>
+                <td>@x.south_to_feet</td>
+                <td>@x.east_to_head</td>
+                <td>@x.east_to_feet</td>
+                <td>@x.burial_situation</td>
+                <td>@x.length_of_remains</td>
+                <td>@x.burial_number</td>
+                <td>@x.sample_number</td>
 
 
-                </tr>}
+            </tr>}
 
 
-                        </tbody>*@
+                    </tbody>*@
         </table>
 
         <br />
@@ -133,16 +135,16 @@
 
             @*displaying the actual submitted information*@
             @*<tbody>
-                            @foreach (Intex_app.Models.Burials x in Model)
-                            {
-                <tr>
-                    <td>@x.gender_GE</td>
-                    <td>@x.GE_function_total</td>
-                    <td>@x.gender_body_col</td>
-                </tr>}
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
 
 
-                        </tbody>*@
+                    </tbody>*@
         </table>
         <br />
         <h3>Mummies osteological Information</h3>
@@ -185,16 +187,16 @@
 
             @*displaying the actual submitted information*@
             @*<tbody>
-                            @foreach (Intex_app.Models.Burials x in Model)
-                            {
-                <tr>
-                    <td>@x.gender_GE</td>
-                    <td>@x.GE_function_total</td>
-                    <td>@x.gender_body_col</td>
-                </tr>}
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
 
 
-                        </tbody>*@
+                    </tbody>*@
         </table>
 
         <br />
@@ -237,16 +239,16 @@
 
             @*displaying the actual submitted information*@
             @*<tbody>
-                            @foreach (Intex_app.Models.Burials x in Model)
-                            {
-                <tr>
-                    <td>@x.gender_GE</td>
-                    <td>@x.GE_function_total</td>
-                    <td>@x.gender_body_col</td>
-                </tr>}
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
 
 
-                        </tbody>*@
+                    </tbody>*@
         </table>
         <br />
 
@@ -284,16 +286,16 @@
 
             @*displaying the actual submitted information*@
             @*<tbody>
-                            @foreach (Intex_app.Models.Burials x in Model)
-                            {
-                <tr>
-                    <td>@x.gender_GE</td>
-                    <td>@x.GE_function_total</td>
-                    <td>@x.gender_body_col</td>
-                </tr>}
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
 
 
-                        </tbody>*@
+                    </tbody>*@
         </table>
 
         <br />
@@ -327,21 +329,21 @@
 
                     <th>Face Bundle</th>
 
-                 </tr>
+                </tr>
             </thead>
 
             @*displaying the actual submitted information*@
             @*<tbody>
-                            @foreach (Intex_app.Models.Burials x in Model)
-                            {
-                <tr>
-                    <td>@x.gender_GE</td>
-                    <td>@x.GE_function_total</td>
-                    <td>@x.gender_body_col</td>
-                </tr>}
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
 
 
-                        </tbody>*@
+                    </tbody>*@
         </table>
 
         <br />
@@ -364,21 +366,21 @@
 
             @*displaying the actual submitted information*@
             @*<tbody>
-                            @foreach (Intex_app.Models.Burials x in Model)
-                            {
-                <tr>
-                    <td>@x.gender_GE</td>
-                    <td>@x.GE_function_total</td>
-                    <td>@x.gender_body_col</td>
-                </tr>}
+                        @foreach (Intex_app.Models.Burials x in Model)
+                        {
+            <tr>
+                <td>@x.gender_GE</td>
+                <td>@x.GE_function_total</td>
+                <td>@x.gender_body_col</td>
+            </tr>}
 
 
-                        </tbody>*@
+                    </tbody>*@
         </table>
 
         <br />
 
-       
+
 
 
 
