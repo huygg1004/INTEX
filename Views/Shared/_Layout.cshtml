@@ -40,6 +40,9 @@
                     <li class="nav-item">
                         <a asp-action="Index">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a asp-action="ViewBurials">View Burials</a>
+                    </li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
@@ -52,7 +55,7 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('https://www.gannett-cdn.com/presto/2019/01/28/PPHX/ad59d6e0-18ab-4cea-8a83-83e5673167a3-mummies_006.jpeg?crop=4255,2377,x0,y0&width=3200&height=1788&format=pjpg&auto=webp') ">
+    <!--<header class="masthead" style="background-image: url('https://www.gannett-cdn.com/presto/2019/01/28/PPHX/ad59d6e0-18ab-4cea-8a83-83e5673167a3-mummies_006.jpeg?crop=4255,2377,x0,y0&width=3200&height=1788&format=pjpg&auto=webp') ">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -64,7 +67,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header>-->
 
     @RenderBody()
 

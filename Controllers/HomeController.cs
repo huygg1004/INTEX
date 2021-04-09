@@ -27,6 +27,13 @@ namespace Intex_app.Controllers
         {
             return View();
         }
+
+        public IActionResult ViewBurials()
+        {
+            //return View();
+            return View();
+        }
+
         [HttpGet]
         [Authorize]
         public IActionResult TestForm()
