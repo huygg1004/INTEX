@@ -27,6 +27,10 @@ namespace Intex_app.Controllers
         {
             return View();
         }
+        public IActionResult arcgis()
+        {
+            return View();
+        }
 
         public IActionResult ViewBurialsPublic()
         {
