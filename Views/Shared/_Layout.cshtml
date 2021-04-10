@@ -38,10 +38,13 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a asp-action="Index">Home</a>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a asp-action="ViewBurialsPublic">View Burials - General</a>
+                        <a asp-controller="Home" asp-action="ViewBurialsPublic">View Burials - General</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Home" asp-action="arcgis">Interactive Map</a>
                     </li>
                     <li class="nav-item">
                         <a asp-controller="Account" asp-action="register">Sign Up</a>
@@ -52,14 +55,14 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            <a asp-action="ViewBurialsResearchers">View Burials - Researchers</a>
+                            <a asp-controller="Home" asp-action="ViewBurialsResearchers">View Burials - Researchers</a>
                         </li>
                         <li class="nav-item">
-                            <a asp-action="ResearchersTools">Researchers Tools</a>
+                            <a asp-controller="Home" asp-action="ResearchersTools">Researchers Tools</a>
                         </li>
 
                         <li class="nav-item">
-                            <a asp-action="TestForm">Edit Form</a>
+                            <a asp-controller="Home" asp-action="TestForm">Edit Form</a>
                         </li>
                     }
                 </ul>
