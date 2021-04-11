@@ -43,6 +43,10 @@ namespace Intex_app
             {
                 optionsBuilder.UseSqlServer(Configuration["ConnectionSTrings:IntexDBConnection"]);
             });
+            services.AddDbContext<GamousContext>(optionsBuilder =>
+            {
+                optionsBuilder.UseSqlServer(Configuration["ConnectionStrings:GamousDBConnection"]);
+            });
 
             services.AddIdentity<ApplicationUser, ApplicationRole>(o =>
             {
@@ -129,6 +133,15 @@ namespace Intex_app
 
             app.UseRouting();
             app.UseAuthorization();
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        "pagination",
+            //        "Location/{page}",
+            //       new { Controller = "Home", action = "ViewBurialsPublic" });
+
+            //    endpoints.MapDefaultControllerRoute();
+            //});
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

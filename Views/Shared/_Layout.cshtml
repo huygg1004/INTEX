@@ -44,7 +44,7 @@
                         <a asp-controller="Home" asp-action="ViewBurialsPublic">View Burials - General</a>
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="Home" asp-action="arcgis">Interactive Map</a>
+                        <a asp-controller="Home" asp-action="arcgis">Interactive Database</a>
                     </li>
                     <li class="nav-item">
                         <a asp-controller="Account" asp-action="register">Sign Up</a>
@@ -61,35 +61,30 @@
                             <a asp-controller="Home" asp-action="ResearchersTools">Researchers Tools</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a asp-controller="Home" asp-action="TestForm">Edit Form</a>
-                        </li>
+                        @*<li class="nav-item">
+                <a asp-controller="Home" asp-action="TestForm">Edit Form</a>
+            </li>*@
                     }
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <!--<header class="masthead" style="background-image: url('https://www.gannett-cdn.com/presto/2019/01/28/PPHX/ad59d6e0-18ab-4cea-8a83-83e5673167a3-mummies_006.jpeg?crop=4255,2377,x0,y0&width=3200&height=1788&format=pjpg&auto=webp') ">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
-                    <div class="site-heading">
-                        <h1>BYU Fag el-Gamous Excavation Site</h1>
-                        <span class="subheading">Intex Application</span>
-                    </div>
-                </div>
+    @*<div class="container">
+        <div class="row">
+            <div class="col-4">
+                <vc:location />
+            </div>
+
+            <div class="col-8">
+                <main role="main" class="pb-3">*@
+                    @RenderBody()
+                @*</main>
             </div>
         </div>
-    </header>-->
-
-    @*<div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">*@
-            @RenderBody()
-        @*</div>
     </div>*@
+
+
 
     <!-- Footer -->
     <footer>

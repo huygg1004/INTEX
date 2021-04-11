@@ -3,389 +3,120 @@
 *@
 @{ ViewBag.Title = "View Burial Site For Public Users"; }
 
-@*@model IEnumerable<Intex_app.Models.Burials>*@
+@*@model IEnumerable<Intex_app.Models.LocationMeasurement>*@
+@model IndexViewModel
 
-<header class="masthead" style="        background-image: url('https://media2.s-nbcnews.com/i/newscms/2020_40/3417220/201003-saqqaramummy-ha_45365538166fa95f6d079e749d51c2e6.jpg')">
+<header class="masthead" style="background-image: url('https://christineelder.com/wp-content/uploads/2016/10/king-tut-adobe-1080x632.jpg') ">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
                     <h1>BYU Fag el-Gamous Burial Information</h1>
-                    <span class="subheading">For Researchers</span>
+                    <span class="subheading">For Research Users</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
+@*<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <vc:location />
+        </div>
 
+        <div class="col-8">
+            <main role="main" class="pb-3">*@
 <div>
 
     <div class="container">
-        @*<div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview">*@
 
-        <h2>These are the current excavated burials by BYU researchers</h2>
+        <a asp-action="CRUD_AddData">Click here to Add another Data about Burial Site</a>
 
-        <h3>Researchers On Field Related Information</h3>
 
-        <a class="btn btn-primary" asp-action="ResearchersTools">Researchers Tools</a>
+        <h2>View Data Individually Sorted</h2>
+
+        <h3>Sorted by Location Information</h3>
+
+        <a class="btn btn-primary btn-lg" asp-action="OsteologyR">Click here to View Additional Osteology Data</a>
+        <br /><br />
+        <a class="btn btn-primary btn-lg" asp-action="OsteologySkullR">Click here to View Additional Osteology Skull Data</a>
+        <br /><br />
+        <a class="btn btn-primary btn-lg" asp-action="DemographicR">Click here to View Additional Demographic Data</a>
+        <br /><br />
+        <a class="btn btn-primary btn-lg" asp-action="ArtifactBioNoteR">Click here to View Additional Artifact Bio Note Data</a>
+        <br /><br />
+
+
+
 
         <table>
             <thead>
                 <tr>
                     <th>Burial ID</th>
-
-                    <th>Year on skull</th>
-
-                    <th>Month on skull</th>
-
-                    <th>Date on Skull</th>
-
-                    <th>Field Book</th>
-
-                    <th>Field Book Page Number</th>
-
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.burial_location_NS</td>
-                <td>@x.low_pair_NS</td>
-                <td>@x.high_pair_NS</td>
-                <td>@x.burial_location_EW</td>
-                <td>@x.low_pair_EW</td>
-                <td>@x.high_pair_EW</td>
-
-
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-
-        <br />
-
-        <h3>Other On-site Information</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>Initials of Data Entry Expert</th>
-
-                    <th>Initials of Data Entry Checker</th>
-
-                    <th>BYU Sample</th>
-
-                    <th>Body Analysis</th>
-
-                    <th>Postcrania at Magazine</th>
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.burial_subplot</td>
-                <td>@x.burial_depth</td>
-                <td>@x.south_to_head</td>
-                <td>@x.south_to_feet</td>
-                <td>@x.east_to_head</td>
-                <td>@x.east_to_feet</td>
-                <td>@x.burial_situation</td>
-                <td>@x.length_of_remains</td>
-                <td>@x.burial_number</td>
-                <td>@x.sample_number</td>
-
-
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-
-        <br />
-
-        <h3>Mummies specific information</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>Sex</th>
-
-                    <th>Age</th>
-
-                    <th>Rack and Shelf</th>
-
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-        <br />
-        <h3>Mummies osteological Information</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>Skull Trauma</th>
-
-                    <th>Postcrania Trauma</th>
-
-                    <th>Cribra Orbitala</th>
-
-                    <th>Porotic Hyperostosis</th>
-
-                    <th>
-                        Porotic Hyperostosis
-                        (LOCATIONS)
-                    </th>
-
-                    <th>Metopic Suture</th>
-
-                    <th>Button Osteoma</th>
-
-                    <th>Postcrania Trauma</th>
-
-                    <th>Osteology unknown comment</th>
-
-                    <th>
-                        Temporal Mandibular Joint
-                        Osteoarthritis (TMJ OA)
-                    </th>
-
-                    <th>Linear Hypoplasia Enamel</th>
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-
-        <br />
-
-        <h3>Excavation Site Information</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Area (Hill burials)</th>
-
-                    <th>Tomb</th>
-
-                    <th>burial area North or South</th>
-
-                    <th>burialnors</th>
-
-                    <th>burial area east or west</th>
-
-                    <th>burialxeorw</th>
 
                     <th>Square</th>
 
-                    <th>Burial Number</th>
+                    <th>SouthToHead</th>
 
-                    <th>burial west to head</th>
+                    <th>SouthToFeet</th>
 
-                    <th>burial west to feet</th>
+                    <th>WestToHead</th>
 
-                    <th>burial south to head</th>
+                    <th>WestToFeet</th>
 
-                    <th>burial south to feet</th>
+                    <th>Length</th>
 
-                    <th>burial depth</th>
+                    <th>Depth</th>
 
-                    <th>length</th>
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-        <br />
-
-        <h3>Burial Site additional information</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>year excav</th>
-
-                    <th>Month Excavated</th>
-
-                    <th>Date Excavated</th>
-
-                    <th>burial direction</th>
-
-                    <th>burial preservation</th>
-
-                    <th>burial wrapping</th>
-
-                    <th>burial adult child</th>
-
-                    <th>Gender Code</th>
-
-                    <th>burialgendermethod</th>
-
-                    <th>Age Code SINGLE</th>
-
-
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-
-        <br />
-
-        <h3>Burial Site additional information</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>Burial Direction</th>
-
-                    <th>burialageatdeath</th>
-
-                    <th>burialagemethod</th>
-
-                    <th>Hair Color Code</th>
-
-                    <th>burialhaircolor</th>
-
-                    <th>burialsampletaken</th>
-
-                    <th>length(M)</th>
-
-                    <th>length(CM)</th>
-
-                    <th>Goods</th>
+                    <th>DiscoveryYear</th>
 
                     <th>Cluster</th>
 
-                    <th>Face Bundle</th>
+                    <th>BurialRack</th>
+
 
                 </tr>
             </thead>
 
             @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-
-        <br />
-
-        <h3>Osteology Notes</h3>
-
-        <table>
-            <thead>
+            <tbody>
+                @foreach (var x in Model.LocationMeasurementsR)
+                {
                 <tr>
-                    <th>AdditionalNotes1</th>
-                    <th>AdditionalNotes2</th>
-                    <th>AdditionalNotes3</th>
-                    <th>AdditionalNotes4</th>
-                    <th>AdditionalNotes5</th>
-                    <th>AdditionalNotes6</th>
-                    <th>AdditionalNotes7</th>
-                    <th>AdditionalNotes8</th>
+                    <td>@x.Id</td>
+                    <td>@x.Square</td>
+                    <td>@x.HeadSouth</td>
+                    <td>@x.FeetSouth</td>
+                    <td>@x.HeadWest</td>
+                    <td>@x.FeetWest</td>
+                    <td>@x.BurialLength</td>
+                    <td>@x.Depth</td>
+                    <td>@x.DiscoveryYear</td>
+                    <td>@x.Cluster</td>
+                    <td>@x.BurialRack</td>
+                    <td><a asp-action="CRUD_UpdateData" asp-route-id="@x.Id">Update</a></td>
+                    <td>
+                        <form asp-action="CRUD_DeleteData" method="post">
+                            <input type="hidden" name="id" value="@x.Id" />
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
+                }
 
 
-                    </tbody>*@
+            </tbody>
         </table>
-
+        <div page-info="@Model.PageNumberingInfo" page-classes-enabled="true" page-class="btn"
+             page-class-normal="btn-outline-dark" page-class-selected="btn-danger">
+        </div>
         <br />
-
-
-
-
 
     </div>
 </div>
-@*</div>
+@*</main>
+            </div>
         </div>
     </div>*@
+
