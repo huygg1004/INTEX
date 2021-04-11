@@ -5,7 +5,7 @@
     ViewBag.Title = "Field Notes";
 }
 
-@*@model FieldNotes*@
+@model FieldNotesViewModel
 <style>
     table{
         font-family:Georgia, 'Times New Roman', Times, serif;
@@ -39,7 +39,14 @@
                         <h3>General Information</h3>
                         <div>
                             <label @*asp-for=""*@>Square:</label>
-                            <input @*asp-for=""*@ />
+                            @if (Model != null)
+                            {
+                                <input asp-for="LocationMeasurement.Square" value="@Model.LocationMeasurement.Square" />
+                            }
+                            else
+                            {
+                                <input asp-for="LocationMeasurement.Square />
+                            }
                         </div>
                         <div>
                             <label @*asp-for=""*@>Area:</label>

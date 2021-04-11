@@ -16,10 +16,14 @@ namespace Intex_app.Controllers
         private readonly ILogger<HomeController> _logger;
         //public Token _token { get; set; }
         private readonly UserManager<ApplicationUser> _userManager;
-        public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager)//, Token token)
+        //private GamousContext _context;
+
+        public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager)
+            //, GamousContext context)//, Token token)
         {
             _logger = logger;
             _userManager = userManager;
+            //_context = context;
             //_token = token;
         }
 
@@ -55,6 +59,20 @@ namespace Intex_app.Controllers
             //return View();
             return View();
         }
+        [Authorize]
+        //public IActionResult EnterFieldNotes(string Id)
+        //{
+        //    FieldNotesViewModel ViewModel = new FieldNotesViewModel
+        //    {
+        //        Osteology = _context.Osteologies.First(o => o.Id == Id),
+        //        OsteologySkull = _context.OsteologySkulls.First(o => o.Id == Id),
+        //        LocationMeasurement = _context.LocationMeasurements.First(o => o.Id == Id),
+        //        Demographic = _context.Demographics.First(o => o.Id == Id),
+        //        ArtifactBioNote = _context.ArtifactBioNotes.First(o => o.Id == Id),
+        //    }
+        //    //return View();
+        //    return View(ViewModel);
+        //}
         [Authorize]
         public IActionResult ViewFieldNotes()
         {
