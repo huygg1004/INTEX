@@ -210,7 +210,7 @@ namespace Intex_app.Controllers
         }
         #endregion
 
-
+        #region R View
 
         [Authorize]
         public IActionResult ViewBurialsResearchers(string? id, int pageNum = 1)
@@ -342,7 +342,9 @@ namespace Intex_app.Controllers
 
             });
         }
+        #endregion
 
+        #region CRUD FOR DATA AND BIO NOTES
         [HttpGet]
         public IActionResult CRUD_AddData()
         {
@@ -470,6 +472,8 @@ namespace Intex_app.Controllers
 
             return RedirectToAction("ArtifactBioNoteR");
         }
+
+        #endregion
 
         [Authorize]
         public IActionResult ResearchersTools()

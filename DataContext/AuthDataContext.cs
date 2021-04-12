@@ -21,6 +21,13 @@ namespace Intex_app.DataContext
 
         }
 
+       
+
+        public static AuthDataContext Create()
+        {
+            return new AuthDataContext();
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

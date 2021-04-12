@@ -17,6 +17,14 @@ namespace Intex_app.DataContext
 
         }
 
+        public AccountDataContext()
+        { }
+
+        public static AccountDataContext Create()
+        {
+            return new AccountDataContext();
+        }
+
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    base.OnModelCreating(modelBuilder);

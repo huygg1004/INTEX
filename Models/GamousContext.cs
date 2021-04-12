@@ -23,6 +23,13 @@ namespace Intex_app.Models
         public virtual DbSet<Osteology> Osteologies { get; set; }
         public virtual DbSet<OsteologySkull> OsteologySkulls { get; set; }
 
+       public static GamousContext Create()
+        {
+            return new GamousContext();
+        }
+
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

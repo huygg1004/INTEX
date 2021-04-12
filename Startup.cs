@@ -35,6 +35,10 @@ namespace Intex_app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
+            //Use these service connection if local host
+
             services.AddDbContext<AccountDataContext>(optionsBuilder =>
             {
                 optionsBuilder.UseSqlServer(Configuration["ConnectionSTrings:IntexDBConnection"]);
@@ -47,6 +51,23 @@ namespace Intex_app
             {
                 optionsBuilder.UseSqlServer(Configuration["ConnectionStrings:GamousDBConnection"]);
             });
+
+            //Use these service connection for RDS
+
+            //services.AddDbContext<GamousContext>(options =>
+            //{
+            //    options.UseSqlServer(Helpers.GetRDSConnectionString());
+            //});
+            //services.AddDbContext<AccountDataContext>(options =>
+            //{
+            //    options.UseSqlServer(Helpers.GetRDSConnectionString());
+            //});
+            //services.AddDbContext<AuthDataContext>(options =>
+            //{
+            //    options.UseSqlServer(Helpers.GetRDSConnectionString());
+            //});
+
+
 
             services.AddIdentity<ApplicationUser, ApplicationRole>(o =>
             {
