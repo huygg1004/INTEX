@@ -3,7 +3,8 @@
 *@
 @{ ViewBag.Title = "View Burial Site For Public Users"; }
 
-@*@model IEnumerable<Intex_app.Models.Burials>*@
+@*@model IEnumerable<Intex_app.Models.LocationMeasurement>*@
+@model IndexViewModel
 
 <header class="masthead" style="background-image: url('https://christineelder.com/wp-content/uploads/2016/10/king-tut-adobe-1080x632.jpg') ">
     <div class="overlay"></div>
@@ -18,7 +19,14 @@
         </div>
     </div>
 </header>
+@*<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <vc:location />
+        </div>
 
+        <div class="col-8">
+            <main role="main" class="pb-3">*@
 <div>
 
     <div class="container">
@@ -27,443 +35,83 @@
         <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-preview">*@
 
-        <h2>These are the current excavated burials by BYU researchers</h2>
+        <h2>View Data Individually Sorted</h2>
 
-        <h3>Overall Site Location Information</h3>
+        <h3>Sorted by Location Information</h3>
+
+        <a class="btn btn-primary btn-lg" asp-action="OsteologyPublic">Click here to View Additional Osteology Data</a>
+        <br /><br />
+        <a class="btn btn-primary btn-lg" asp-action="OsteologySkullPublic">Click here to View Additional Osteology Skull Data</a>
+        <br /><br />
+        <a class="btn btn-primary btn-lg" asp-action="DemographicPublic">Click here to View Additional Demographic Data</a>
+        <br /><br />
+        <a class="btn btn-primary btn-lg" asp-action="ArtifactBioNotePublic">Click here to View Additional Artifact Bio Note Data</a>
+        <br /><br />
+
+
+
 
         <table>
             <thead>
                 <tr>
                     <th>Burial ID</th>
 
-                    <th>Burial Location NS</th>
+                    <th>Square</th>
 
-                    <th>Low Pair NS</th>
+                    <th>SouthToHead</th>
 
-                    <th>High Pair NS</th>
+                    <th>SouthToFeet</th>
 
-                    <th>Burial Location EW</th>
+                    <th>WestToHead</th>
 
-                    <th>Low Pair EW</th>
+                    <th>WestToFeet</th>
 
-                    <th>High Pair EW</th>
+                    <th>Length</th>
+
+                    <th>Depth</th>
+
+                    <th>DiscoveryYear</th>
+
+                    <th>Cluster</th>
+
+                    <th>BurialRack</th>
 
 
                 </tr>
             </thead>
 
             @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.burial_location_NS</td>
-                <td>@x.low_pair_NS</td>
-                <td>@x.high_pair_NS</td>
-                <td>@x.burial_location_EW</td>
-                <td>@x.low_pair_EW</td>
-                <td>@x.high_pair_EW</td>
+            <tbody>
+                @foreach (var x in Model.LocationMeasurements)
+                {
+                    <tr>
+                        <td>@x.Id</td>
+                        <td>@x.Square</td>
+                        <td>@x.HeadSouth</td>
+                        <td>@x.FeetSouth</td>
+                        <td>@x.HeadWest</td>
+                        <td>@x.FeetWest</td>
+                        <td>@x.BurialLength</td>
+                        <td>@x.Depth</td>
+                        <td>@x.DiscoveryYear</td>
+                        <td>@x.Cluster</td>
+                        <td>@x.BurialRack</td>
+
+                    </tr>
+                }
 
 
-            </tr>}
-
-
-                    </tbody>*@
+            </tbody>
         </table>
-
+        <div page-info="@Model.PageNumberingInfo" page-classes-enabled="true" page-class="btn"
+             page-class-normal="btn-outline-dark" page-class-selected="btn-danger">
+        </div>
         <br />
-
-        <h3>Other Burial Site General Information</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>Burial Subplot</th>
-
-                    <th>Burial Depth</th>
-
-                    <th>South to Head</th>
-
-                    <th>South to feet</th>
-
-                    <th>East to Head</th>
-
-                    <th>East to Feet</th>
-
-                    <th>Burial Situation</th>
-
-                    <th>Length of Remains</th>
-
-                    <th>Burial Number</th>
-
-                    <th>Sample Number</th>
-
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.burial_subplot</td>
-                <td>@x.burial_depth</td>
-                <td>@x.south_to_head</td>
-                <td>@x.south_to_feet</td>
-                <td>@x.east_to_head</td>
-                <td>@x.east_to_feet</td>
-                <td>@x.burial_situation</td>
-                <td>@x.length_of_remains</td>
-                <td>@x.burial_number</td>
-                <td>@x.sample_number</td>
-
-
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-
-        <br />
-
-        <h3>Mummies specific information</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>Gender GE</th>
-
-                    <th>GE function total</th>
-
-                    <th>Gender Body col</th>
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-        <br />
-        <h3>Mummies osteological Information</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>Basilar Suture</th>
-
-                    <th>Ventral Arc</th>
-
-                    <th>Subpubic Angle</th>
-
-                    <th>Sciatic Notch</th>
-
-                    <th>Pubic Bone</th>
-
-                    <th>Preaur Sulcus</th>
-
-                    <th>medial_IP_ramus</th>
-
-                    <th>dorsal_pitting</th>
-
-                    <th>foreman_magnum</th>
-
-                    <th>femur_head</th>
-
-                    <th>humerus_head</th>
-
-                    <th>osteophytosis</th>
-
-                    <th>pubic_symphysis</th>
-
-                    <th>bone_length</th>
-
-
-
-
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-
-        <br />
-
-        <h3>Mummies additional osteological information</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>medial_clavicle</th>
-
-                    <th>iliac_crest</th>
-
-                    <th>femur_diameter</th>
-
-                    <th>humerus</th>
-
-                    <th>femur_length</th>
-
-                    <th>humerus_length</th>
-
-                    <th>tibia_length</th>
-
-                    <th>robust</th>
-
-                    <th>supraorbital_ridges</th>
-
-                    <th>orbit_edge</th>
-
-                    <th>parietal_bossing</th>
-
-                    <th>gonian</th>
-
-                    <th>nuchal_crest</th>
-
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-        <br />
-
-        <h3>Mummies additional osteological information part 2</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>zygomatic_crest</th>
-
-                    <th>cranial_suture</th>
-
-                    <th>maximum_cranial_length</th>
-
-                    <th>maximum_cranial_breadth</th>
-
-                    <th>basion_bregma_height</th>
-
-                    <th>basion_nasion</th>
-
-
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-
-        <br />
-
-        <h3>Mummies additional osteological information part 3</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>basion_prosthion_length</th>
-
-                    <th>bizygomatic_diameter</th>
-
-                    <th>nasion_prosthion</th>
-
-                    <th>maximum_nasal_breadth</th>
-
-                    <th>interorbital_breadth</th>
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-
-        <br />
-
-        <h3>Mummies miscellaneous Information</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>artifacts_description</th>
-
-                    <th>hair_color</th>
-
-                    <th>preservation_index</th>
-
-                    <th>hair_taken</th>
-
-                    <th>soft_tissue_taken</th>
-
-                    <th>bone_taken</th>
-
-                    <th>tooth_taken</th>
-
-                    <th>textile_taken</th>
-
-                    <th>description_of_taken</th>
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-
-        <br />
-
-        <h3>Mummies miscellaneous Information Part 2</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>artifact_found</th>
-
-                    <th>estimate_age</th>
-
-                    <th>estimate_living_stature</th>
-
-                    <th>tooth_attrition</th>
-
-                    <th>tooth_eruption</th>
-
-                    <th>pathology_anomalies</th>
-
-                    <th>epiphyseal_union</th>
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-
-        <br />
-
-        <h3>Mummies Excavation Discovery Time</h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                    <th>year_found</th>
-
-                    <th>month_found</th>
-
-                    <th>day_found</th>
-
-                    <th>head_direction</th>
-
-                </tr>
-            </thead>
-
-            @*displaying the actual submitted information*@
-            @*<tbody>
-                        @foreach (Intex_app.Models.Burials x in Model)
-                        {
-            <tr>
-                <td>@x.gender_GE</td>
-                <td>@x.GE_function_total</td>
-                <td>@x.gender_body_col</td>
-            </tr>}
-
-
-                    </tbody>*@
-        </table>
-
-
 
     </div>
+</div>
+@*</main>
             </div>
-        @*</div>
-    </div>
-</div>*@
+        </div>
+    </div>*@
+

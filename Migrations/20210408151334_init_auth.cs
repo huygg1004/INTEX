@@ -53,7 +53,7 @@ namespace Intex_app.Migrations
                 name: "IntexRoleClaim",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "string", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -94,7 +94,7 @@ namespace Intex_app.Migrations
                 name: "IntexUserClaim",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "string", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),

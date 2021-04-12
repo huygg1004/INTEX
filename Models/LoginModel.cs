@@ -7,7 +7,7 @@ namespace Intex_app.Models
 {
     public class LoginModel
     {
-        public int Id { get; set; }
+        public String Id { get; set; }
         public String Email { get; set; }
         public String Password { get; set; }
 
