@@ -39,76 +39,75 @@
 
         <!--<h2>View Data Individually Sorted</h2>
 
-        <h3>Sorted by Location Information</h3>
+    <h3>Sorted by Location Information</h3>
 
-        <a class="btn btn-primary btn-lg" asp-action="OsteologyPublic">Click here to View Additional Osteology Data</a>
-        <br /><br />
-        <a class="btn btn-primary btn-lg" asp-action="OsteologySkullPublic">Click here to View Additional Osteology Skull Data</a>
-        <br /><br />
-        <a class="btn btn-primary btn-lg" asp-action="DemographicPublic">Click here to View Additional Demographic Data</a>
-        <br /><br />
-        <a class="btn btn-primary btn-lg" asp-action="ArtifactBioNotePublic">Click here to View Additional Artifact Bio Note Data</a>
-        <br /><br />
-
-
+    <a class="btn btn-primary btn-lg" asp-action="OsteologyPublic">Click here to View Additional Osteology Data</a>
+    <br /><br />
+    <a class="btn btn-primary btn-lg" asp-action="OsteologySkullPublic">Click here to View Additional Osteology Skull Data</a>
+    <br /><br />
+    <a class="btn btn-primary btn-lg" asp-action="DemographicPublic">Click here to View Additional Demographic Data</a>
+    <br /><br />
+    <a class="btn btn-primary btn-lg" asp-action="ArtifactBioNotePublic">Click here to View Additional Artifact Bio Note Data</a>
+    <br /><br />
 
 
-        <table class="table table-striped">
-            <thead class="thead-light">
+
+
+        <table>
+            <thead>
                 <tr>
                     <th>Burial ID</th>
 
-                    <th>Square</th>
+                <th>Square</th>
 
-                    <th>SouthToHead</th>
+                <th>SouthToHead</th>
 
-                    <th>SouthToFeet</th>
+                <th>SouthToFeet</th>
 
-                    <th>WestToHead</th>
+                <th>WestToHead</th>
 
-                    <th>WestToFeet</th>
+                <th>WestToFeet</th>
 
-                    <th>Length</th>
+                <th>Length</th>
 
-                    <th>Depth</th>
+                <th>Depth</th>
 
-                    <th>DiscoveryYear</th>
+                <th>DiscoveryYear</th>
 
-                    <th>Cluster</th>
+                <th>Cluster</th>
 
-                    <th>BurialRack</th>
-
-
-                </tr>
-            </thead>-->
-
-            @*displaying the actual submitted information*@
-            <!--<tbody>-->
-                @*@foreach (var x in Model.LocationMeasurements)*@
-                <!--{
-                    <tr>-->
-                        @*<td>@x.Id</td>
-                        <td>@x.Square</td>
-                        <td>@x.HeadSouth</td>
-                        <td>@x.FeetSouth</td>
-                        <td>@x.HeadWest</td>
-                        <td>@x.FeetWest</td>
-                        <td>@x.BurialLength</td>
-                        <td>@x.Depth</td>
-                        <td>@x.DiscoveryYear</td>
-                        <td>@x.Cluster</td>
-                        <td>@x.BurialRack</td>*@
-
-                    <!--</tr>
-                }
+                <th>BurialRack</th>
 
 
-            </tbody>
-        </table>-->
+            </tr>
+        </thead>-->
+        @*displaying the actual submitted information*@
+        <!--<tbody>-->
+        @*@foreach (var x in Model.LocationMeasurements)*@
+        <!--{
+    <tr>-->
+        @*<td>@x.Id</td>
+        <td>@x.Square</td>
+        <td>@x.HeadSouth</td>
+        <td>@x.FeetSouth</td>
+        <td>@x.HeadWest</td>
+        <td>@x.FeetWest</td>
+        <td>@x.BurialLength</td>
+        <td>@x.Depth</td>
+        <td>@x.DiscoveryYear</td>
+        <td>@x.Cluster</td>
+        <td>@x.BurialRack</td>*@
+
+        <!--</tr>
+            }
+
+
+        </tbody>
+    </table>-->
         @*<div page-info="@Model.PageNumberingInfo" page-classes-enabled="true" page-class="btn"*@
-             <!--page-class-normal="btn-outline-dark" page-class-selected="btn-danger">
-        </div>
-        <br />-->
+        <!--page-class-normal="btn-outline-dark" page-class-selected="btn-danger">
+    </div>
+    <br />-->
 
     </div>
 </div>

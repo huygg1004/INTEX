@@ -493,7 +493,160 @@ namespace Intex_app.Controllers
         [Authorize]
         public IActionResult EnterFieldNotes(string Id)
         {
-            if(Id != null)
+
+            return View();
+        }
+
+
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Demographic(string Id)
+        {
+            if (Id != null)
+            {
+                return View(new DemographicViewModel
+                {
+                    Demographic = _context.Demographics.FirstOrDefault(o => o.Id == Id),
+                    Identifier = Id
+                });
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Demographic(DemographicViewModel viewModel)
+        {
+            if (viewModel.Identifier != null)
+            {
+                //we either have demographic already, or the ID that needs demographic information was sent
+                if(_context.Demographics.FirstOrDefault(o => o.Id == viewModel.Identifier) != null){
+                    //we have an existing Demographic'
+                    _context.Demographics.FirstOrDefault(o => o.Id == viewModel.Identifier).AgeAtDeath = viewModel.Demographic.AgeAtDeath;
+                    _context.Demographics.FirstOrDefault(o => o.Id == viewModel.Identifier).AgeAtDeath = viewModel.Demographic.AgeAtDeath;
+                    _context.Demographics.FirstOrDefault(o => o.Id == viewModel.Identifier).AgeAtDeath = viewModel.Demographic.AgeAtDeath;
+                    _context.Demographics.FirstOrDefault(o => o.Id == viewModel.Identifier).AgeAtDeath = viewModel.Demographic.AgeAtDeath;
+                    _context.Demographics.FirstOrDefault(o => o.Id == viewModel.Identifier).AgeAtDeath = viewModel.Demographic.AgeAtDeath;
+                    _context.Demographics.FirstOrDefault(o => o.Id == viewModel.Identifier).AgeAtDeath = viewModel.Demographic.AgeAtDeath;
+                    _context.Demographics.FirstOrDefault(o => o.Id == viewModel.Identifier).AgeAtDeath = viewModel.Demographic.AgeAtDeath;
+                    _context.Demographics.FirstOrDefault(o => o.Id == viewModel.Identifier).AgeAtDeath = viewModel.Demographic.AgeAtDeath;
+
+                    _context.Demographics.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.Demographic.LastModifiedBy;
+                    _context.Demographics.FirstOrDefault(o => o.Id == viewModel.Identifier).AgeAtDeath = viewModel.Demographic.AgeAtDeath;
+
+
+
+                    _context.SaveChanges();
+                    return View();
+                }
+                else
+                {
+                    //we are adding a new one, with a shared id
+                    viewModel.Demographic.Id = viewModel.Identifier;
+
+                    _context.Demographics.Add(viewModel.Demographic);
+                    _context.SaveChanges();
+
+
+                    //return next view
+                    return View("Demographic", viewModel.Identifier);
+                }
+            }
+            else
+            {
+                //create new
+                //creates without connection to location measurement (not recommended)
+                //they are entering a new mummy
+                _context.Demographics.Add(viewModel.Demographic);
+                _context.SaveChanges();
+                //set timestamp
+
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                _context.SaveChanges();
+
+                //either take them to location measurement or we shouldnt allow this
+                return View();
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult LocationMeasurement(string Id)
+        {
+            if (Id != null)
+            {
+                return View(new LocationMeasurementViewModel
+                {
+                    LocationMeasurement = _context.LocationMeasurements.FirstOrDefault(o => o.Id == Id),
+                    Identifier = Id
+                });
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [Authorize]
+        [HttpPost]
+        public IActionResult LocationMeasurement(LocationMeasurementViewModel viewModel)
+        {
+            if(viewModel.Identifier != null)
+            {
+                var recalculatedIdentifier = viewModel.LocationMeasurement.Nors + viewModel.LocationMeasurement.LowNs.ToString() + viewModel.LocationMeasurement.Eorw + viewModel.LocationMeasurement.LowEw.ToString() + viewModel.LocationMeasurement.Square + viewModel.LocationMeasurement.BurialNum.ToString();
+                //they are editing an existing mummy
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).Nors = viewModel.LocationMeasurement.Nors;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LowNs = viewModel.LocationMeasurement.LowNs;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).HighNs = (Int32.Parse(viewModel.LocationMeasurement.LowNs) + 10).ToString();
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LowEw = viewModel.LocationMeasurement.LowEw;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).HighEw = (Int32.Parse(viewModel.LocationMeasurement.LowEw) + 10).ToString();
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).Square = viewModel.LocationMeasurement.Square;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).BurialNum = viewModel.LocationMeasurement.BurialNum;
+
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).Direction = viewModel.LocationMeasurement.Direction;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).Depth = viewModel.LocationMeasurement.Depth;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).HeadSouth = viewModel.LocationMeasurement.HeadSouth;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).FeetSouth = viewModel.LocationMeasurement.FeetSouth;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).HeadWest = viewModel.LocationMeasurement.HeadWest;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).FeetWest = viewModel.LocationMeasurement.FeetWest;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).BurialLength = viewModel.LocationMeasurement.BurialLength;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).DiscoveryDay = viewModel.LocationMeasurement.DiscoveryDay;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).DiscoveryMonth = viewModel.LocationMeasurement.DiscoveryMonth;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).DiscoveryYear = viewModel.LocationMeasurement.DiscoveryYear;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).Cluster = viewModel.LocationMeasurement.Cluster;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).BurialRack = viewModel.LocationMeasurement.BurialRack;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.LocationMeasurement.LastModifiedBy;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+
+
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).Id = recalculatedIdentifier;
+                _context.SaveChanges();
+            }
+            else
+            {
+                var calculatedIdentifier = viewModel.LocationMeasurement.Nors + viewModel.LocationMeasurement.LowNs.ToString() + viewModel.LocationMeasurement.Eorw + viewModel.LocationMeasurement.LowEw.ToString() + viewModel.LocationMeasurement.Square + viewModel.LocationMeasurement.BurialNum.ToString();
+                viewModel.LocationMeasurement.Id = calculatedIdentifier;
+                //they are entering a new mummy
+                _context.LocationMeasurements.Add(viewModel.LocationMeasurement);
+                _context.SaveChanges();
+                //set timestamp
+
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == calculatedIdentifier).LastModifiedTimestamp = DateTime.Now;
+                _context.SaveChanges();
+
+                //route to the osteology entry view
+                return View("Demographic", viewModel.Identifier);
+            }
+            return View("Home");
+        }
+        [Authorize]
+        [HttpGet]
+        public IActionResult Edit(string Id)
+        {
+            if (Id != null)
             {
                 return View(new FieldNotesViewModel
                 {
@@ -501,16 +654,22 @@ namespace Intex_app.Controllers
                     OsteologySkull = _context.OsteologySkulls.FirstOrDefault(o => o.Id == Id),
                     LocationMeasurement = _context.LocationMeasurements.FirstOrDefault(o => o.Id == Id),
                     Demographic = _context.Demographics.FirstOrDefault(o => o.Id == Id),
-                    ArtifactBioNote = _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == Id)
+                    ArtifactBioNote = _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == Id),
+                    Identifier = Id
                 });
             }
             else
             {
                 return View();
             }
-            
         }
         [Authorize]
+        [HttpPost]
+        public IActionResult Edit(FieldNotesViewModel viewModel)
+        {
+            return View();
+        }
+            [Authorize]
         public IActionResult ViewFieldNotes()
         {
             //return View();

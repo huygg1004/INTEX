@@ -12,5 +12,6 @@ namespace Intex_app.Models
         public LocationMeasurement LocationMeasurement { get; set; }
         public Demographic Demographic { get; set; }
         public ArtifactBioNote ArtifactBioNote { get; set; }
+        public String Identifier { get; set; }
     }
 }
