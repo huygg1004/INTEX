@@ -55,36 +55,38 @@ namespace Intex_app.Controllers
             //    .FromSqlInterpolated($"SELECT * FROM Recipes WHERE RecipeClassId = {mealtypeid} OR {mealtypeid} IS NULL")
             //    .ToList());
 
-            int pageSize = 50;
+            //int pageSize = 50;
 
-            return View(new IndexViewModel
-            {
-                LocationMeasurements = (_context.LocationMeasurements
-                .Where(m => m.Id == id || id == null)
-                .OrderBy(m => m.Id)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize)
-                .ToList()),
+            //return View(new IndexViewModel
+            //{
+            //    LocationMeasurements = (_context.LocationMeasurements
+            //    .Where(m => m.Id == id || id == null)
+            //    .OrderBy(m => m.Id)
+            //    .Skip((pageNum - 1) * pageSize)
+            //    .Take(pageSize)
+            //    .ToList()),
 
-                PageNumberingInfo = new PageNumberingInfo
-                {
-                    NumItemsPerPage = pageSize,
-                    CurrentPage = pageNum,
+            //    PageNumberingInfo = new PageNumberingInfo
+            //    {
+            //        NumItemsPerPage = pageSize,
+            //        CurrentPage = pageNum,
 
-                    //if no team has been selected, then get the full count. Otherwise only count the number from the team name that has been selected
-                    TotalNumItems = (id == null ? _context.LocationMeasurements.Count() :
-                     _context.LocationMeasurements.Where(x => x.Id == id).Count())
-                },
+            //        //if no team has been selected, then get the full count. Otherwise only count the number from the team name that has been selected
+            //        TotalNumItems = (id == null ? _context.LocationMeasurements.Count() :
+            //         _context.LocationMeasurements.Where(x => x.Id == id).Count())
+            //    },
 
-                Osteologies = (_context.Osteologies
-                .Where(m => m.Id == id || id == null)
-                .OrderBy(m => m.Id)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize)
-                .ToList())
+            //    Osteologies = (_context.Osteologies
+            //    .Where(m => m.Id == id || id == null)
+            //    .OrderBy(m => m.Id)
+            //    .Skip((pageNum - 1) * pageSize)
+            //    .Take(pageSize)
+            //    .ToList())
 
 
-            });
+            //});
+
+            return View();
         }
         public IActionResult OsteologyPublic(string? id, int pageNum = 1)
         {
@@ -481,11 +483,32 @@ namespace Intex_app.Controllers
             //return View();
             return View();
         }
+        //[Authorize]
+        //public IActionResult EnterFieldNotes()
+        //{
+        //    //return View();
+        //    return View();
+        //}
+
         [Authorize]
-        public IActionResult EnterFieldNotes()
+        public IActionResult EnterFieldNotes(string Id)
         {
-            //return View();
-            return View();
+            if(Id != null)
+            {
+                return View(new FieldNotesViewModel
+                {
+                    Osteology = _context.Osteologies.FirstOrDefault(o => o.Id == Id),
+                    OsteologySkull = _context.OsteologySkulls.FirstOrDefault(o => o.Id == Id),
+                    LocationMeasurement = _context.LocationMeasurements.FirstOrDefault(o => o.Id == Id),
+                    Demographic = _context.Demographics.FirstOrDefault(o => o.Id == Id),
+                    ArtifactBioNote = _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == Id)
+                });
+            }
+            else
+            {
+                return View();
+            }
+            
         }
         [Authorize]
         public IActionResult ViewFieldNotes()

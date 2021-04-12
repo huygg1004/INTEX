@@ -91,7 +91,7 @@ namespace Intex_app.Controllers
                 //use above for phone api
                 Token token = new Token();
 
-                token.TokenString = encodedJwt;
+                token.TokenString = encodedJwt.ToString();
                    
                 HttpContext.Session.SetJson("Token", token);
                 return RedirectToAction("Index", "Home");

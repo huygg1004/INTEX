@@ -7,6 +7,8 @@ namespace Intex_app.Models.ViewModels
 {
     public class IndexViewModel
     {
+        public string pageid { get; set; }
+
         public List<LocationMeasurement> LocationMeasurements { get; set; }
         public List<Osteology> Osteologies { get; set; }
         public List<OsteologySkull> OsteologySkulls { get; set; }
