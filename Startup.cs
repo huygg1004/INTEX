@@ -144,12 +144,25 @@ namespace Intex_app
             {
                 SessionToken JWToken = context.Session.GetJason<SessionToken>("Token")
                                 ?? new SessionToken();
+                SessionToken TableauToken = context.Session.GetJason<SessionToken>("TableauToken")
+                            ?? new SessionToken();
+
+
                 if (!string.IsNullOrEmpty(JWToken.TokenString))
                 {
                     context.Request.Headers.Add("Authorization", "Bearer " + JWToken.TokenString);
                 }
+
+                if (!string.IsNullOrEmpty(TableauToken.TokenString))
+                {
+                    context.Request.Headers.Add("X-Tableau-Auth", TableauToken.TokenString);
+                }
                 await next();
             });
+
+            
+
+            
             app.UseAuthentication();
 
             app.UseRouting();
