@@ -68,7 +68,7 @@ namespace Intex_app.Controllers
                     message.IsBodyHtml = true;
                     var smtp = new SmtpClient("smtp.outlook.com", 587)
                     {
-                        Credentials = new NetworkCredential("teo1997@byu.edu", ""),
+                        Credentials = new NetworkCredential("teo1997@byu.edu", "Im2cre8ive"),
                         EnableSsl = true
                     };
                     smtp.Send(message);
@@ -81,6 +81,14 @@ namespace Intex_app.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public IActionResult SignOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
         [AllowAnonymous]
         [HttpPost]
         [Route("verify/{userId}")]
@@ -96,7 +104,7 @@ namespace Intex_app.Controllers
                 //take them to the token page
                 return RedirectToAction("Token", "token");
             }
-            return RedirectToAction("Home", "Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
