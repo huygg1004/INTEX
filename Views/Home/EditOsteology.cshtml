@@ -1,10 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-@model OsteologyViewModel
+﻿@model OsteologyViewModel
 
 <header class="masthead">
     <div class="overlay"></div>
@@ -26,7 +20,7 @@
         {
             <input asp-for="Osteology.LastModifiedBy" hidden value="@User.Identity.Name" />
 
-            <h3>Osteology</h3>
+            <h3>Osteology Report</h3>
             @if (Model.Identifier != null)
             {
                 <input asp-for="Identifier" hidden value="@Model.Identifier" />
