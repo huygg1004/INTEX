@@ -26,24 +26,42 @@
                 <input asp-for="Identifier" hidden value="@Model.Identifier" />
                 <input asp-for="Osteology.CreatedBy" hidden value="@Model.Osteology.CreatedBy" />
 
-                <label asp-for="Osteology.BasilarSuture">Basilar Suture</label>
-                <input asp-for="Osteology.BasilarSuture" value="@Model.Osteology.BasilarSuture" /><br />
-                <label asp-for="Osteology.VentralArc">Ventral Arc</label>
-                <input asp-for="Osteology.VentralArc" value="@Model.Osteology.VentralArc" /><br />
-                <label asp-for="Osteology.SubpubicAngle">Subpubic Angle</label>
-                <input asp-for="Osteology.SubpubicAngle" value="@Model.Osteology.SubpubicAngle" /><br />
-                <label asp-for="Osteology.SciaticNotch">Sciatic Notch</label>
-                <input asp-for="Osteology.SciaticNotch" value="@Model.Osteology.SciaticNotch" /><br />
-                <label asp-for="Osteology.ForemanMagnum">Foreman Magnum</label>
-                <input asp-for="Osteology.ForemanMagnum" value="@Model.Osteology.ForemanMagnum" /><br />
-                <label asp-for="Osteology.BoneLength">Bone Length</label>
-                <input asp-for="Osteology.BoneLength" value="@Model.Osteology.BoneLength" /><br />
-                <label asp-for="Osteology.Osteophytosis">Osteophytosis</label>
-                <input asp-for="Osteology.Osteophytosis" value="@Model.Osteology.Osteophytosis" /><br />
-                <label asp-for="Osteology.ToothAttrition">Tooth Attrition</label>
-                <input asp-for="Osteology.ToothAttrition" value="@Model.Osteology.ToothAttrition" /><br />
-                <label asp-for="Osteology.ToothEruption">Tooth Eruption</label>
-                <input asp-for="Osteology.ToothEruption" value="@Model.Osteology.ToothEruption" /><br />
+                <div class="form-group">
+                    <label asp-for="Osteology.BasilarSuture">Basilar Suture</label>
+                    <input class="form-control" asp-for="Osteology.BasilarSuture" value="@Model.Osteology.BasilarSuture" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Osteology.VentralArc">Ventral Arc</label>
+                    <input class="form-control" asp-for="Osteology.VentralArc" value="@Model.Osteology.VentralArc" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Osteology.SubpubicAngle">Subpubic Angle</label>
+                    <input class="form-control" asp-for="Osteology.SubpubicAngle" value="@Model.Osteology.SubpubicAngle" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Osteology.SciaticNotch">Sciatic Notch</label>
+                    <input class="form-control" asp-for="Osteology.SciaticNotch" value="@Model.Osteology.SciaticNotch" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Osteology.ForemanMagnum">Foreman Magnum</label>
+                    <input class="form-control" asp-for="Osteology.ForemanMagnum" value="@Model.Osteology.ForemanMagnum" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Osteology.BoneLength">Bone Length</label>
+                    <input class="form-control" asp-for="Osteology.BoneLength" value="@Model.Osteology.BoneLength" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Osteology.Osteophytosis">Osteophytosis</label>
+                    <input class="form-control" asp-for="Osteology.Osteophytosis" value="@Model.Osteology.Osteophytosis" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Osteology.ToothAttrition">Tooth Attrition</label>
+                    <input class="form-control" asp-for="Osteology.ToothAttrition" value="@Model.Osteology.ToothAttrition" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Osteology.ToothEruption">Tooth Eruption</label>
+                    <input class="form-control" asp-for="Osteology.ToothEruption" value="@Model.Osteology.ToothEruption" />
+                </div>
 
                 <button type="submit">Update Osteology Report</button><br /> <br />
             }
@@ -55,24 +73,42 @@
             @*keep the created information the same*@
             <input asp-for="Osteology.CreatedBy" hidden value="@User.Identity.Name" />
 
-            <label asp-for="Osteology.BasilarSuture">Basilar Suture</label>
-            <input asp-for="Osteology.BasilarSuture" value="@Model.Osteology.BasilarSuture" /><br />
-            <label asp-for="Osteology.VentralArc">Ventral Arc</label>
-            <input asp-for="Osteology.VentralArc" value="@Model.Osteology.VentralArc" /><br />
-            <label asp-for="Osteology.SubpubicAngle">Subpubic Angle</label>
-            <input asp-for="Osteology.SubpubicAngle" value="@Model.Osteology.SubpubicAngle" /><br />
-            <label asp-for="Osteology.SciaticNotch">Sciatic Notch</label>
-            <input asp-for="Osteology.SciaticNotch" value="@Model.Osteology.SciaticNotch" /><br />
-            <label asp-for="Osteology.ForemanMagnum">Foreman Magnum</label>
-            <input asp-for="Osteology.ForemanMagnum" value="@Model.Osteology.ForemanMagnum" /><br />
-            <label asp-for="Osteology.BoneLength">Bone Length</label>
-            <input asp-for="Osteology.BoneLength" value="@Model.Osteology.BoneLength" /><br />
-            <label asp-for="Osteology.Osteophytosis">Osteophytosis</label>
-            <input asp-for="Osteology.Osteophytosis" value="@Model.Osteology.Osteophytosis" /><br />
-            <label asp-for="Osteology.ToothAttrition">Tooth Attrition</label>
-            <input asp-for="Osteology.ToothAttrition" value="@Model.Osteology.ToothAttrition" /><br />
-            <label asp-for="Osteology.ToothEruption">Tooth Eruption</label>
-            <input asp-for="Osteology.ToothEruption" value="@Model.Osteology.ToothEruption" /><br />
+            <div class="form-group">
+                <label asp-for="Osteology.BasilarSuture">Basilar Suture</label>
+                <input class="form-control" asp-for="Osteology.BasilarSuture" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Osteology.VentralArc">Ventral Arc</label>
+                <input class="form-control" asp-for="Osteology.VentralArc" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Osteology.SubpubicAngle">Subpubic Angle</label>
+                <input class="form-control" asp-for="Osteology.SubpubicAngle" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Osteology.SciaticNotch">Sciatic Notch</label>
+                <input class="form-control" asp-for="Osteology.SciaticNotch" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Osteology.ForemanMagnum">Foreman Magnum</label>
+                <input class="form-control" asp-for="Osteology.ForemanMagnum" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Osteology.BoneLength">Bone Length</label>
+                <input class="form-control" asp-for="Osteology.BoneLength" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Osteology.Osteophytosis">Osteophytosis</label>
+                <input class="form-control" asp-for="Osteology.Osteophytosis" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Osteology.ToothAttrition">Tooth Attrition</label>
+                <input class="form-control" asp-for="Osteology.ToothAttrition" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Osteology.ToothEruption">Tooth Eruption</label>
+                <input class="form-control" asp-for="Osteology.ToothEruption" />
+            </div>
 
             <button type="submit">Add New Osteology Report</button><br /> <br />
         }
