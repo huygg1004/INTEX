@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Intex_app.Models.ViewModels;
+using Intex_app.Services;
+using System.IO;
 
 namespace Intex_app.Controllers
 {
@@ -19,12 +21,14 @@ namespace Intex_app.Controllers
         //public Token _token { get; set; }
         private GamousContext _context { get; set; }
         private readonly UserManager<ApplicationUser> _userManager;
-        public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, GamousContext context)//, Token token)
+        private readonly S3interface _s3; 
+        public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, GamousContext context,S3interface s3)//, Token token)
         {
             _logger = logger;
             _userManager = userManager;
             //_token = token;
             _context = context;
+            _s3 = s3;
         }
 
         public IActionResult Index()
@@ -36,7 +40,43 @@ namespace Intex_app.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public async Task<IActionResult> PhotoSave(Photo savedPhoto)
+        //{
+        //    if(ModelState.IsValid)
+        //    {
+        //        string url = await _s3.AddItem(savedPhoto.uploadphoto, "testing");
 
+        //        return Redirect("ViewPhotos");
+        //    }
+        //    else
+        //    {
+        //        return View("PhotoUploadForm");
+        //    }
+        //}
+
+        //public IActionResult ViewPhotos()
+        //{
+        //    return View();
+        //}
+
+        public IActionResult PhotoUploadForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PhotoUploadForm(StorageUploadForm file)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await file.photofile.CopyToAsync(memoryStream);
+
+                await StorageUpload.UploadFileAsync(memoryStream, "YOUR_BUCKET_NAME", "YOUR_KEY_NAME");
+            }
+
+            return View();
+        }
 
         //public IActionResult ViewBurialsPublic(long? id)
         //{
