@@ -12,6 +12,10 @@ using Microsoft.EntityFrameworkCore;
 using Intex_app.Models.ViewModels;
 using Intex_app.Services;
 using System.IO;
+using Intex_app.Infrastructure;
+using System.Xml;
+using System.Text;
+using System.Net;
 
 namespace Intex_app.Controllers
 {
@@ -89,44 +93,57 @@ namespace Intex_app.Controllers
         //}
 
         #region Public View
-        public IActionResult ViewBurialsPublic(string? id, int pageNum = 1)
+        public IActionResult ViewBurialsPublic()
         {
-            //return View(context.Recipes
-            //    .FromSqlInterpolated($"SELECT * FROM Recipes WHERE RecipeClassId = {mealtypeid} OR {mealtypeid} IS NULL")
-            //    .ToList());
+            var request = (HttpWebRequest)WebRequest.Create("https://10ay.online.tableau.com/api/3.11/auth/signin");
+            request.Method = "POST";
+            request.ContentType = "text/xml";
 
-            //int pageSize = 50;
+            byte[] bytes;
+            bytes = Encoding.ASCII.GetBytes("<tsRequest><credentials personalAccessTokenName = 'demo' personalAccessTokenSecret = 'uwl6pad4SkCd83VdVkmUAg==:t2SDxSqKBK0rcbEmpYe2TnSTpSFQLC8W'><site contentUrl = 'Intex'/></credentials></tsRequest>");
 
-            //return View(new IndexViewModel
-            //{
-            //    LocationMeasurements = (_context.LocationMeasurements
-            //    .Where(m => m.Id == id || id == null)
-            //    .OrderBy(m => m.Id)
-            //    .Skip((pageNum - 1) * pageSize)
-            //    .Take(pageSize)
-            //    .ToList()),
+            request.ContentLength = bytes.Length;
 
-            //    PageNumberingInfo = new PageNumberingInfo
-            //    {
-            //        NumItemsPerPage = pageSize,
-            //        CurrentPage = pageNum,
+            Stream requestStream = request.GetRequestStream();
+            requestStream.Write(bytes, 0, bytes.Length);
+            requestStream.Close();
 
-            //        //if no team has been selected, then get the full count. Otherwise only count the number from the team name that has been selected
-            //        TotalNumItems = (id == null ? _context.LocationMeasurements.Count() :
-            //         _context.LocationMeasurements.Where(x => x.Id == id).Count())
-            //    },
+            var result = (HttpWebResponse)request.GetResponse();
+            var user = "";
 
-            //    Osteologies = (_context.Osteologies
-            //    .Where(m => m.Id == id || id == null)
-            //    .OrderBy(m => m.Id)
-            //    .Skip((pageNum - 1) * pageSize)
-            //    .Take(pageSize)
-            //    .ToList())
+            //Console.WriteLine(result);
 
 
-            //});
+            using (Stream stream = result.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+                String responseString = reader.ReadToEnd();
 
-            return View();
+                XmlDocument docu = new XmlDocument();
+
+                docu.LoadXml(responseString);
+
+                var tableauTokenString = docu.GetElementsByTagName("credentials")[0].Attributes[0].Value;
+                user = docu.GetElementsByTagName("credentials")[0].ChildNodes[1].Attributes[0].Value;
+                Token tableauToken = new Token();
+
+                tableauToken.TokenString = tableauTokenString.ToString();
+
+                HttpContext.Session.SetJson("TableauToken", tableauToken);
+            }
+
+            SessionToken TableauToken = HttpContext.Session.GetJason<SessionToken>("TableauToken")
+                            ?? new SessionToken();
+
+            if (TableauToken.TokenString != null)
+            {
+                return View("ViewBurialsPublic", user);
+                //return Redirect("https://10ay.online.tableau.com/#/site/intex/workbooks/820859?:origin=card_share_link");
+            }
+            else
+            {
+                return View();
+            }
         }
         public IActionResult OsteologyPublic(string? id, int pageNum = 1)
         {

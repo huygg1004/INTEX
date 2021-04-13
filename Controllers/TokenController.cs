@@ -50,12 +50,6 @@ namespace Intex_app.Controllers
             return View();
         }
 
-        [Route("teableau")]
-        [HttpGet]
-        public IActionResult tableau()
-        {
-            return Redirect("https://10ay.online.tableau.com/#/site/intex/workbooks/820859?:origin=card_share_link");
-        }
 
         [HttpPost]
         [AllowAnonymous]
@@ -76,53 +70,6 @@ namespace Intex_app.Controllers
 
                 if (valid)
                 {
-                    var request = (HttpWebRequest)WebRequest.Create("https://10ay.online.tableau.com/api/3.11/auth/signin");
-                    request.Method = "POST";
-                    request.ContentType = "text/xml";
-
-                    byte[] bytes;
-                    bytes = Encoding.ASCII.GetBytes("<tsRequest><credentials personalAccessTokenName = 'demo' personalAccessTokenSecret = 'uwl6pad4SkCd83VdVkmUAg==:t2SDxSqKBK0rcbEmpYe2TnSTpSFQLC8W'><site contentUrl = 'Intex'/></credentials></tsRequest>");
-
-                    request.ContentLength = bytes.Length;
-
-                    Stream requestStream = request.GetRequestStream();
-                    requestStream.Write(bytes, 0, bytes.Length);
-                    requestStream.Close();
-
-                    var result = (HttpWebResponse)request.GetResponse();
-
-
-                    //Console.WriteLine(result);
-
-
-                    using (Stream stream = result.GetResponseStream())
-                    {
-                        StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-                        String responseString = reader.ReadToEnd();
-
-                        XmlDocument docu = new XmlDocument();
-
-                        docu.LoadXml(responseString);
-
-                        var tableauTokenString = docu.GetElementsByTagName("credentials")[0].Attributes[0].Value;
-
-                        Token tableauToken = new Token();
-
-                        tableauToken.TokenString = tableauTokenString.ToString();
-
-                        HttpContext.Session.SetJson("TableauToken", tableauToken);
-                    }
-
-
-
-
-
-
-
-
-
-
-
                     var claims = new List<Claim>();
                     claims.Add(new Claim(ClaimTypes.Email, user.Email));
                     //claims.Add(new Claim(ClaimTypes.GivenName, user.name));

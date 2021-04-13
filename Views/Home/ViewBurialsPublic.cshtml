@@ -4,7 +4,7 @@
 @{ ViewBag.Title = "View Burial Site For Public Users"; }
 
 @*@model IEnumerable<Intex_app.Models.LocationMeasurement>*@
-@model IndexViewModel
+@model string
 
 <header class="masthead" style="background-image: url('https://christineelder.com/wp-content/uploads/2016/10/king-tut-adobe-1080x632.jpg') ">
     <div class="overlay"></div>
@@ -30,83 +30,30 @@
 <div>
 
     <div class="container">
-        <script type='text/javascript' src='https://10ay.online.tableau.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 1000px; height: 850px;'><object class='tableauViz' width='1000' height='850' style='display:none;'><param name='X-Tableau-Auth' value='a' /><param name='host_url' value='https%3A%2F%2F10ay.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;intex' /><param name='name' value='FagElGamous&#47;GridChart' /><param name='tabs' value='yes' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /></object></div>
-
-        @*<div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview">*@
-
-        <!--<h2>View Data Individually Sorted</h2>
-
-    <h3>Sorted by Location Information</h3>
-
-    <a class="btn btn-primary btn-lg" asp-action="OsteologyPublic">Click here to View Additional Osteology Data</a>
-    <br /><br />
-    <a class="btn btn-primary btn-lg" asp-action="OsteologySkullPublic">Click here to View Additional Osteology Skull Data</a>
-    <br /><br />
-    <a class="btn btn-primary btn-lg" asp-action="DemographicPublic">Click here to View Additional Demographic Data</a>
-    <br /><br />
-    <a class="btn btn-primary btn-lg" asp-action="ArtifactBioNotePublic">Click here to View Additional Artifact Bio Note Data</a>
-    <br /><br />
 
 
 
+        <script type='text/javascript' src='https://10ay.online.tableau.com/javascripts/api/viz_v1.js'></script>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Burial ID</th>
-
-                <th>Square</th>
-
-                <th>SouthToHead</th>
-
-                <th>SouthToFeet</th>
-
-                <th>WestToHead</th>
-
-                <th>WestToFeet</th>
-
-                <th>Length</th>
-
-                <th>Depth</th>
-
-                <th>DiscoveryYear</th>
-
-                <th>Cluster</th>
-
-                <th>BurialRack</th>
+        <div class='tableauPlaceholder' style='width: 1000px; height: 850px;'>
+            <user id="@Model" />
+            <object class='tableauViz' width='1000' height='850' style='display:none;'>
+                <user id="@Model" />
+                <param name='host_url' value='https%3A%2F%2F10ay.online.tableau.com%2F' />
+                <param name='embed_code_version' value='3' />
+                <param name='site_root' value='&#47;t&#47;intex' />
+                <param name='name' value='FagElGamous&#47;GridChart' />
+                <param name='tabs' value='yes' />
+                <param name='toolbar' value='yes' />
+                <param name='showAppBanner' value='false' />
+            </object>
+        </div>
 
 
-            </tr>
-        </thead>-->
-        @*displaying the actual submitted information*@
-        <!--<tbody>-->
-        @*@foreach (var x in Model.LocationMeasurements)*@
-        <!--{
-    <tr>-->
-        @*<td>@x.Id</td>
-        <td>@x.Square</td>
-        <td>@x.HeadSouth</td>
-        <td>@x.FeetSouth</td>
-        <td>@x.HeadWest</td>
-        <td>@x.FeetWest</td>
-        <td>@x.BurialLength</td>
-        <td>@x.Depth</td>
-        <td>@x.DiscoveryYear</td>
-        <td>@x.Cluster</td>
-        <td>@x.BurialRack</td>*@
-
-        <!--</tr>
-            }
 
 
-        </tbody>
-    </table>-->
-        @*<div page-info="@Model.PageNumberingInfo" page-classes-enabled="true" page-class="btn"*@
-        <!--page-class-normal="btn-outline-dark" page-class-selected="btn-danger">
-    </div>
-    <br />-->
+
+
 
     </div>
 </div>
