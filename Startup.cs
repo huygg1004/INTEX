@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Amazon.S3;
 using Intex_app.DataContext;
 using Intex_app.Infrastructure;
 using Intex_app.Models;
 using Intex_app.Options;
+using Intex_app.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +20,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+
 
 namespace Intex_app
 {
@@ -35,7 +38,8 @@ namespace Intex_app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddSingleton<S3interface, S3>();
+            services.AddAWSService<IAmazonS3>();
 
             //Use these service connection if local host
 
@@ -50,6 +54,11 @@ namespace Intex_app
             services.AddDbContext<GamousContext>(optionsBuilder =>
             {
                 optionsBuilder.UseSqlServer(Configuration["ConnectionStrings:GamousDBConnection"]);
+            });
+
+            services.AddDbContext<PhotoContext>(optionsBuilder =>
+            {
+                optionsBuilder.UseSqlServer(Configuration["ConnectionStrings:PhotoConnection"]);
             });
 
             //Use these service connection for RDS

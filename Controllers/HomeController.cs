@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Intex_app.Models.ViewModels;
+using Intex_app.Services;
+using System.IO;
 
 namespace Intex_app.Controllers
 {
@@ -19,12 +21,14 @@ namespace Intex_app.Controllers
         //public Token _token { get; set; }
         private GamousContext _context { get; set; }
         private readonly UserManager<ApplicationUser> _userManager;
-        public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, GamousContext context)//, Token token)
+        private readonly S3interface _s3; 
+        public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, GamousContext context,S3interface s3)//, Token token)
         {
             _logger = logger;
             _userManager = userManager;
             //_token = token;
             _context = context;
+            _s3 = s3;
         }
 
         public IActionResult Index()
@@ -36,7 +40,43 @@ namespace Intex_app.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public async Task<IActionResult> PhotoSave(Photo savedPhoto)
+        //{
+        //    if(ModelState.IsValid)
+        //    {
+        //        string url = await _s3.AddItem(savedPhoto.uploadphoto, "testing");
 
+        //        return Redirect("ViewPhotos");
+        //    }
+        //    else
+        //    {
+        //        return View("PhotoUploadForm");
+        //    }
+        //}
+
+        //public IActionResult ViewPhotos()
+        //{
+        //    return View();
+        //}
+
+        public IActionResult PhotoUploadForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PhotoUploadForm(StorageUploadForm file)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await file.photofile.CopyToAsync(memoryStream);
+
+                await StorageUpload.UploadFileAsync(memoryStream, "YOUR_BUCKET_NAME", "YOUR_KEY_NAME");
+            }
+
+            return View();
+        }
 
         //public IActionResult ViewBurialsPublic(long? id)
         //{
@@ -641,6 +681,192 @@ namespace Intex_app.Controllers
             }
             return View("Home");
         }
+
+        //osteology edit
+        [Authorize]
+        [HttpGet]
+        public IActionResult EditOsteology(string Id)
+        {
+            if (Id != null)
+            {
+                return View(new OsteologyViewModel
+                {
+                    Osteology = _context.Osteologies.FirstOrDefault(o => o.Id == Id),
+                    Identifier = Id
+                });
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [Authorize]
+        [HttpPost]
+        public IActionResult EditOsteology(OsteologyViewModel viewModel)
+        {
+            if (viewModel.Identifier != null)
+            {
+               
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).BasilarSuture = viewModel.Osteology.BasilarSuture;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).VentralArc = viewModel.Osteology.VentralArc;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).SubpubicAngle = viewModel.Osteology.SubpubicAngle;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).SciaticNotch = viewModel.Osteology.SciaticNotch;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).PubicBone = viewModel.Osteology.PubicBone;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).PreaurSulcus = viewModel.Osteology.PreaurSulcus;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).MedialIpramus = viewModel.Osteology.MedialIpramus;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).DorsalPitting = viewModel.Osteology.DorsalPitting;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).ForemanMagnum = viewModel.Osteology.ForemanMagnum;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).FemurHead = viewModel.Osteology.FemurHead;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).HumerusHead = viewModel.Osteology.HumerusHead;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).Osteophytosis = viewModel.Osteology.Osteophytosis;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).PubicSymphysis = viewModel.Osteology.PubicSymphysis;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).BoneLength = viewModel.Osteology.BoneLength;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).MedialClavicle = viewModel.Osteology.MedialClavicle;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).IliacCrest = viewModel.Osteology.IliacCrest;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).FemurDiameter = viewModel.Osteology.FemurDiameter;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).Humerus = viewModel.Osteology.Humerus;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).FemurLength = viewModel.Osteology.FemurLength;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).HumerusLength = viewModel.Osteology.HumerusLength;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).TibiaLength = viewModel.Osteology.TibiaLength;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).PostcraniaTrauma = viewModel.Osteology.PostcraniaTrauma;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).ToothAttrition = viewModel.Osteology.ToothAttrition;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).ToothEruption = viewModel.Osteology.ToothEruption;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).CreatedBy = viewModel.Osteology.CreatedBy;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.Osteology.LastModifiedBy;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+
+                _context.SaveChanges();
+            }
+            else
+            {
+                _context.Osteologies.Add(viewModel.Osteology);
+                _context.SaveChanges();
+
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                _context.SaveChanges();
+
+                return View("Demographic", viewModel.Identifier);
+            }
+            return View("Home");
+        }
+
+        //edit skull actions
+        [Authorize]
+        [HttpGet]
+        public IActionResult EditSkull(string Id)
+        {
+            if (Id != null)
+            {
+                return View(new SkullViewModel
+                {
+                    OsteologySkull = _context.OsteologySkulls.FirstOrDefault(o => o.Id == Id),
+                    Identifier = Id
+                });
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [Authorize]
+        [HttpPost]
+        public IActionResult EditSkull(SkullViewModel viewModel)
+        {
+            if (viewModel.Identifier != null)
+            {
+
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).MaxCranialLength = viewModel.OsteologySkull.MaxCranialLength;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).MaxCranialBreadth = viewModel.OsteologySkull.MaxCranialBreadth;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).BasionBregmaHeight = viewModel.OsteologySkull.BasionBregmaHeight;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).BasionNasion = viewModel.OsteologySkull.BasionNasion;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).BasionProsthionLength = viewModel.OsteologySkull.BasionProsthionLength;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).NasionProsthion = viewModel.OsteologySkull.NasionProsthion;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).MaxNasalBreadth = viewModel.OsteologySkull.MaxNasalBreadth;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).InterorbitalBreadth = viewModel.OsteologySkull.InterorbitalBreadth;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).BizygomaticDiameter = viewModel.OsteologySkull.BizygomaticDiameter;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).CranialSuture = viewModel.OsteologySkull.CranialSuture;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).ZygomaticCrest = viewModel.OsteologySkull.ZygomaticCrest;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).NuchalCrest = viewModel.OsteologySkull.NuchalCrest;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).Gonian = viewModel.OsteologySkull.Gonian;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).ParietalBossing = viewModel.OsteologySkull.ParietalBossing;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).OrbitEdge = viewModel.OsteologySkull.OrbitEdge;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).SupraorbitalRidges = viewModel.OsteologySkull.SupraorbitalRidges;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).Robust = viewModel.OsteologySkull.Robust;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).SkullTrauma = viewModel.OsteologySkull.SkullTrauma;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).CreatedBy = viewModel.OsteologySkull.CreatedBy;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.OsteologySkull.LastModifiedBy;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+
+                _context.SaveChanges();
+            }
+            else
+            {
+                _context.OsteologySkulls.Add(viewModel.OsteologySkull);
+                _context.SaveChanges();
+
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                _context.SaveChanges();
+
+                return View("Demographic", viewModel.Identifier);
+            }
+            return View("Home");
+        }
+
+        //edit bio notes
+        [Authorize]
+        [HttpGet]
+        public IActionResult EditArtifactBio(string Id)
+        {
+            if (Id != null)
+            {
+                return View(new ArtifactViewModel
+                {
+                    ArtifactBioNote = _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == Id),
+                    Identifier = Id
+                });
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult EditArtifactBio(ArtifactViewModel viewModel)
+        {
+            if (viewModel.Identifier != null)
+            {
+
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).Rack = viewModel.ArtifactBioNote.Rack;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).ArtifactFound = viewModel.ArtifactBioNote.ArtifactFound;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).ArtifactDescription = viewModel.ArtifactBioNote.ArtifactDescription;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).SampleTaken = viewModel.ArtifactBioNote.SampleTaken;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).BioNotes = viewModel.ArtifactBioNote.BioNotes;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).AdditionalNotes = viewModel.ArtifactBioNote.AdditionalNotes;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).FaceBundle = viewModel.ArtifactBioNote.FaceBundle;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).PathologyAnomalies = viewModel.ArtifactBioNote.PathologyAnomalies;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).BurialWraping = viewModel.ArtifactBioNote.BurialWraping;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).PreservationIndex = viewModel.ArtifactBioNote.PreservationIndex;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).CreatedBy = viewModel.ArtifactBioNote.CreatedBy;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.ArtifactBioNote.LastModifiedBy;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+
+                _context.SaveChanges();
+            }
+            else
+            {
+                _context.ArtifactBioNotes.Add(viewModel.ArtifactBioNote);
+                _context.SaveChanges();
+
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                _context.SaveChanges();
+
+                return View("Demographic", viewModel.Identifier);
+            }
+            return View("Home");
+        }
+
         [Authorize]
         [HttpGet]
         public IActionResult Edit(string Id)
