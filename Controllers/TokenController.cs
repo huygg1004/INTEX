@@ -60,55 +60,55 @@ namespace Intex_app.Controllers
             var valid = await _userManager.CheckPasswordAsync(user, model.Password);
 
             //this would make sure the user confirmed their email address, but we don't have a dummy email we can use
-            //if(user.EmailConfirmed)
-            //{
-            
-            if (valid)
+            if (user.EmailConfirmed)
             {
-                var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Email, user.Email));
-                //claims.Add(new Claim(ClaimTypes.GivenName, user.name));
 
-                var jwt = new JwtSecurityToken(
-                    issuer: _jwtOptions.Issuer,
-                    audience: _jwtOptions.Audience,
-                    claims: claims,
-                    notBefore: _jwtOptions.NotBefore,
-                    expires: _jwtOptions.Expiration,
-                    signingCredentials: _jwtOptions.SigningCredentials
-                    );
-
-                var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-                var response = new
+                if (valid)
                 {
-                    access_token = encodedJwt,
-                    expires_in = (int)_jwtOptions.ValidFor.TotalSeconds,
-                    is_admin = user.Admin,
-                };
+                    var claims = new List<Claim>();
+                    claims.Add(new Claim(ClaimTypes.Email, user.Email));
+                    //claims.Add(new Claim(ClaimTypes.GivenName, user.name));
 
-                var json = JsonConvert.SerializeObject(response, _serializerSettings);
-                //return new OkObjectResult(json);
-                //use above for phone api
-                Token token = new Token();
+                    var jwt = new JwtSecurityToken(
+                        issuer: _jwtOptions.Issuer,
+                        audience: _jwtOptions.Audience,
+                        claims: claims,
+                        notBefore: _jwtOptions.NotBefore,
+                        expires: _jwtOptions.Expiration,
+                        signingCredentials: _jwtOptions.SigningCredentials
+                        );
 
-                token.TokenString = encodedJwt.ToString();
-                   
-                HttpContext.Session.SetJson("Token", token);
-                return RedirectToAction("Index", "Home");
+                    var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+                    var response = new
+                    {
+                        access_token = encodedJwt,
+                        expires_in = (int)_jwtOptions.ValidFor.TotalSeconds,
+                        is_admin = user.Admin,
+                    };
+
+                    var json = JsonConvert.SerializeObject(response, _serializerSettings);
+                    //return new OkObjectResult(json);
+                    //use above for phone api
+                    Token token = new Token();
+
+                    token.TokenString = encodedJwt.ToString();
+
+                    HttpContext.Session.SetJson("Token", token);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    if (user != null)
+                    {
+                        user.AccessFailedCount += 1;
+                    }
+                    return Unauthorized();
+                }
             }
             else
             {
-                if(user != null)
-                {
-                    user.AccessFailedCount += 1;
-                }
-                return Unauthorized();
+                return Ok("Make sure you confirm your email address");
             }
-            //}
-            //else
-            //{
-            //    return Ok("Make sure you confirm your email address");
-            //}
         }
     }
 }

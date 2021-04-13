@@ -278,21 +278,180 @@
             @if (Model.Demographic != null)
             {
                 <input asp-for="Demographic.CreatedBy" hidden value="@Model.Demographic.CreatedBy" />
+                <input asp-for="Demographic.CreatedBy" hidden value="@Model.Demographic.CreatedBy" />
+
+                @*they are editing*@
+                <input asp-for="Identifier" hidden value="@Model.Identifier" />
+                <label asp-for="Demographic.Sex">"Sex"</label>
+
+                <select asp-for="Demographic.Sex" value="@Model.Demographic.Sex">
+                    <option value="">--Select One--</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="C">Child (unknown)</option>
+                </select>
+                <label asp-for="Demographic.SexGe">"Sex GE" </label>
+                <select asp-for="Demographic.SexGe" value="@Model.Demographic.SexGe">
+                    <option value="">--Select One--</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+                <label asp-for="Demographic.HairColor">"Hair Color" </label>
+                <select asp-for="Demographic.HairColor" value="@Model.Demographic.HairColor">
+                    <option value="">--Select One--</option>
+                    <option value="B">Brown</option>
+                    <option value="R">Red</option>
+                    <option value="K">Black</option>
+                    <option value="D">Blonde</option>
+                    <option value="A">Red-Brown</option>
+                </select>
+
+                <label asp-for="Demographic.AgeAtDeath">Age at Death (range)</label>
+                <input asp-for="Demographic.AgeAtDeath" readonly value="@Model.Demographic.AgeAtDeath" />
+                <label asp-for="Demographic.AgeAtDeathMin">"Estimated Min Age at Death" /</label>
+                <input asp-for="Demographic.AgeAtDeathMin" value="@Model.Demographic.AgeAtDeathMin" />
+                <label asp-for="Demographic.AgeAtDeathMax">"Estimated Max Age at Death" </label>
+                <input asp-for="Demographic.AgeAtDeathMax" value="@Model.Demographic.AgeAtDeathMax" />
+                <label asp-for="Demographic.AgeMethod">Age at Death Method</label>
+                <input asp-for="Demographic.AgeMethod" readonly value="@Model.Demographic.AgeMethod" />
+                <label asp-for="Demographic.Height">Height</label>
+                <input asp-for="Demographic.Height" value="@Model.Demographic.Height" />
             }
             else
             {
                 @*if it's blank then the user who creates this form will be the creator *@
                 <input asp-for="Demographic.CreatedBy" hidden value="@User.Identity.Name" />
+                <label asp-for="Demographic.Sex">"Sex"</label>
+
+                <select asp-for="Demographic.Sex">
+                    <option value="">--Select One--</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="C">Child (unknown)</option>
+                </select>
+                <label asp-for="Demographic.SexGe">"Sex GE" </label>
+                <select asp-for="Demographic.SexGe">
+                    <option value="">--Select One--</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+                <label asp-for="Demographic.HairColor">"Hair Color" </label>
+                <select asp-for="Demographic.HairColor">
+                    <option value="">--Select One--</option>
+                    <option value="B">Brown</option>
+                    <option value="R">Red</option>
+                    <option value="K">Black</option>
+                    <option value="D">Blonde</option>
+                    <option value="A">Red-Brown</option>
+                </select>
+
+                <label asp-for="Demographic.AgeAtDeath">Age at Death (range)</label>
+                <input asp-for="Demographic.AgeAtDeath" readonly />
+                <label asp-for="Demographic.AgeAtDeathMin">"Estimated Min Age at Death" /</label>
+                <input asp-for="Demographic.AgeAtDeathMin" />
+                <label asp-for="Demographic.AgeAtDeathMax">"Estimated Max Age at Death" </label>
+                <input asp-for="Demographic.AgeAtDeathMax" />
+                <label asp-for="Demographic.AgeMethod">Age at Death Method</label>
+                <input asp-for="Demographic.AgeMethod" />
+                <label asp-for="Demographic.Height">Height</label>
+                <input asp-for="Demographic.Height" />
+                <button type="submit">Add New Demographic</button><br /> <br />
             }
             <h3>Artifact Bio Note</h3>
             @if (Model.ArtifactBioNote != null)
             {
                 <input asp-for="ArtifactBioNote.CreatedBy" hidden value="@Model.ArtifactBioNote.CreatedBy" />
+                <input type="text" asp-for="ArtifactBioNote.Id" hidden value="@Model.ArtifactBioNote.Id"/>
+
+                <div>
+                    <label asp-for="ArtifactBioNote.Rack">Rack</label>
+                    <input type="text" asp-for="ArtifactBioNote.Rack" value="@Model.ArtifactBioNote.Rack" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.ArtifactFound">ArtifactFound</label>
+                    <input type="text" asp-for="ArtifactBioNote.ArtifactFound"  value="@Model.ArtifactBioNote.ArtifactFound" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.ArtifactDescription">LowNs</label>
+                    <input type="text" asp-for="ArtifactBioNote.ArtifactDescription" value="@Model.ArtifactBioNote.ArtifactDescription" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.SampleTaken">SampleTaken</label>
+                    <input type="text" asp-for="ArtifactBioNote.SampleTaken" value="@Model.ArtifactBioNote.SampleTaken" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.BioNotes">BioNotes</label>
+                    <input type="text" asp-for="ArtifactBioNote.BioNotes" value="@Model.ArtifactBioNote.BioNotes" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.AdditionalNotes">AdditionalNotes</label>
+                    <input type="text" asp-for="ArtifactBioNote.AdditionalNotes" value="@Model.ArtifactBioNote.AdditionalNotes" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.FaceBundle">FaceBundle</label>
+                    <input type="text" asp-for="ArtifactBioNote.FaceBundle" value="@Model.ArtifactBioNote.FaceBundle" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.PathologyAnomalies">PathologyAnomalies</label>
+                    <input type="text" asp-for="ArtifactBioNote.PathologyAnomalies" value="@Model.ArtifactBioNote.PathologyAnomalies" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.BurialWraping">Burial Wrapping</label>
+                    <input type="text" asp-for="ArtifactBioNote.BurialWraping" value="@Model.ArtifactBioNote.BurialWraping" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.PreservationIndex">PreservationIndex</label>
+                    <input type="text" asp-for="ArtifactBioNote.PreservationIndex" value="@Model.ArtifactBioNote.PreservationIndex" />
+                </div>
             }
             else
             {
                 @*if it's blank then the user who creates this form will be the creator *@
                 <input asp-for="ArtifactBioNote.CreatedBy" hidden value="@User.Identity.Name" />
+                <div>
+                    <label asp-for="ArtifactBioNote.Id">Burial ID</label>
+                    <input type="text" asp-for="ArtifactBioNote.Id" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.Rack">Rack</label>
+                    <input type="text" asp-for="ArtifactBioNote.Rack" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.ArtifactFound">ArtifactFound</label>
+                    <input type="text" asp-for="ArtifactBioNote.ArtifactFound" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.ArtifactDescription">LowNs</label>
+                    <input type="text" asp-for="ArtifactBioNote.ArtifactDescription" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.SampleTaken">SampleTaken</label>
+                    <input type="text" asp-for="ArtifactBioNote.SampleTaken" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.BioNotes">BioNotes</label>
+                    <input type="text" asp-for="ArtifactBioNote.BioNotes" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.AdditionalNotes">AdditionalNotes</label>
+                    <input type="text" asp-for="ArtifactBioNote.AdditionalNotes" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.FaceBundle">FaceBundle</label>
+                    <input type="text" asp-for="ArtifactBioNote.FaceBundle" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.PathologyAnomalies">PathologyAnomalies</label>
+                    <input type="text" asp-for="ArtifactBioNote.PathologyAnomalies" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.BurialWraping">BurialWraping</label>
+                    <input type="text" asp-for="ArtifactBioNote.BurialWraping" />
+                </div>
+                <div>
+                    <label asp-for="ArtifactBioNote.PreservationIndex">PreservationIndex</label>
+                    <input type="text" asp-for="ArtifactBioNote.PreservationIndex" />
+                </div>
             }
 
 
