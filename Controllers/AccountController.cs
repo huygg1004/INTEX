@@ -48,7 +48,7 @@ namespace Intex_app.Controllers
                     var message = new System.Net.Mail.MailMessage();
                     message.To.Add(email);
                     message.Subject = "Verify Account";
-                    message.From = new MailAddress("teo1997@byu.edu");
+                    message.From = new MailAddress("noreply@impetusfactor.com");
 
                     var emailDomain = model.Email.Substring(model.Email.LastIndexOf('@'));
 
@@ -66,10 +66,10 @@ namespace Intex_app.Controllers
 
 
                     message.IsBodyHtml = true;
-                    var smtp = new SmtpClient("smtp.outlook.com", 587)
+                    var smtp = new SmtpClient("mail.impetusfactor.com", 587)
                     {
-                        Credentials = new NetworkCredential("teo1997@byu.edu", "Im2cre8ive"),
-                        EnableSsl = true
+                        Credentials = new NetworkCredential("noreply@impetusfactor.com", "blurgRider1165@b"),
+                        EnableSsl = true                        
                     };
                     smtp.Send(message);
                 }
@@ -79,7 +79,7 @@ namespace Intex_app.Controllers
                 }
                 //}
             }
-            return View();
+            return Ok(Response);
         }
 
         [HttpGet]
