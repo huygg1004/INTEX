@@ -46,12 +46,8 @@
                     <li class="nav-item">
                         <a asp-controller="Home" asp-action="arcgis">Interactive Database</a>
                     </li>
-                    <li class="nav-item">
-                        <a asp-controller="Account" asp-action="register">Sign Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Token" asp-action="login">Sign In</a>
-                    </li>
+
+
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
@@ -64,6 +60,17 @@
                         @*<li class="nav-item">
                 <a asp-controller="Home" asp-action="TestForm">Edit Form</a>
             </li>*@
+                    }
+                    else
+                    {
+                        @*only show sign in / sign up if they are not signed in*@
+
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="register">Sign Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Token" asp-action="token">Sign In</a>
+                        </li>
                     }
                 </ul>
             </div>
