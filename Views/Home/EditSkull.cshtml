@@ -1,0 +1,152 @@
+﻿@model SkullViewModel
+
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>BYU Fag el-Gamous Excavation Site</h1>
+                    <span class="subheading">Intex Application</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header> 
+
+<div class="container">
+    <form asp-action="EditSkull" method="post">
+        @if (Model != null)
+        {
+            <input asp-for="OsteologySkull.LastModifiedBy" hidden value="@User.Identity.Name" />
+
+            <h3>Osteology Skull Report</h3>
+            @if (Model.Identifier != null)
+            {
+                <input asp-for="Identifier" hidden value="@Model.Identifier" />
+                <input asp-for="OsteologySkull.CreatedBy" hidden value="@Model.OsteologySkull.CreatedBy" />
+
+                <label asp-for="OsteologySkull.MaxCranialLength">Max Cranial Length</label>
+                <input asp-for="OsteologySkull.MaxCranialLength" value="@Model.OsteologySkull.MaxCranialLength" /><br />
+
+                <label asp-for="OsteologySkull.MaxCranialBreadth">Max Cranial Breadth</label>
+                <input asp-for="OsteologySkull.MaxCranialBreadth" value="@Model.OsteologySkull.MaxCranialBreadth" /><br />
+
+                <label asp-for="OsteologySkull.BasionBregmaHeight">Basion Bregma Height</label>
+                <input asp-for="OsteologySkull.BasionBregmaHeight" value="@Model.OsteologySkull.BasionBregmaHeight" /><br />
+
+                <label asp-for="OsteologySkull.BasionNasion">Basion Nasion</label>
+                <input asp-for="OsteologySkull.BasionNasion" value="@Model.OsteologySkull.BasionNasion" /><br />
+
+                <label asp-for="OsteologySkull.BasionProsthionLength">Basion Prosthion Length</label>
+                <input asp-for="OsteologySkull.BasionProsthionLength" value="@Model.OsteologySkull.BasionProsthionLength" /><br />
+
+                <label asp-for="OsteologySkull.NasionProsthion">Nasion Prosthion</label>
+                <input asp-for="OsteologySkull.NasionProsthion" value="@Model.OsteologySkull.NasionProsthion" /><br />
+
+                <label asp-for="OsteologySkull.MaxNasalBreadth">Max Nasal Breadth</label>
+                <input asp-for="OsteologySkull.MaxNasalBreadth" value="@Model.OsteologySkull.MaxNasalBreadth" /><br />
+
+                <label asp-for="OsteologySkull.InterorbitalBreadth">Interorbital Breadth</label>
+                <input asp-for="OsteologySkull.InterorbitalBreadth" value="@Model.OsteologySkull.InterorbitalBreadth" /><br />
+
+                <label asp-for="OsteologySkull.BizygomaticDiameter">Bizygomatic Diameter</label>
+                <input asp-for="OsteologySkull.BizygomaticDiameter" value="@Model.OsteologySkull.BizygomaticDiameter" /><br />
+
+                <label asp-for="OsteologySkull.CranialSuture">Cranial Suture</label>
+                <input asp-for="OsteologySkull.CranialSuture" value="@Model.OsteologySkull.CranialSuture" /><br />
+
+                <label asp-for="OsteologySkull.ZygomaticCrest">Zygomatic Crest</label>
+                <input asp-for="OsteologySkull.ZygomaticCrest" value="@Model.OsteologySkull.ZygomaticCrest" /><br />
+
+                <label asp-for="OsteologySkull.NuchalCrest">Nuchal Crest</label>
+                <input asp-for="OsteologySkull.NuchalCrest" value="@Model.OsteologySkull.NuchalCrest" /><br />
+
+                <label asp-for="OsteologySkull.Gonian">Gonian</label>
+                <input asp-for="OsteologySkull.Gonian" value="@Model.OsteologySkull.Gonian" /><br />
+
+                <label asp-for="OsteologySkull.ParietalBossing">Parietal Bossing</label>
+                <input asp-for="OsteologySkull.ParietalBossing" value="@Model.OsteologySkull.ParietalBossing" /><br />
+
+                <label asp-for="OsteologySkull.OrbitEdge">Orbit Edge</label>
+                <input asp-for="OsteologySkull.OrbitEdge" value="@Model.OsteologySkull.OrbitEdge" /><br />
+
+                <label asp-for="OsteologySkull.SupraorbitalRidges">Supraorbital Ridges</label>
+                <input asp-for="OsteologySkull.SupraorbitalRidges" value="@Model.OsteologySkull.SupraorbitalRidges" /><br />
+
+                <label asp-for="OsteologySkull.Robust">Robust</label>
+                <input asp-for="OsteologySkull.Robust" value="@Model.OsteologySkull.Robust" /><br />
+
+                <label asp-for="OsteologySkull.SkullTrauma">SkullTrauma</label>
+                <input asp-for="OsteologySkull.SkullTrauma" value="@Model.OsteologySkull.SkullTrauma" /><br />
+
+                <button type="submit">Update Skull Osteology Report</button><br /> <br />
+            }
+        }
+        else
+        {
+            @*this is the first time it is being created last modified and created are the same person*@
+            <input asp-for="OsteologySkull.LastModifiedBy" hidden value="@User.Identity.Name" />
+            @*keep the created information the same*@
+            <input asp-for="OsteologySkull.CreatedBy" hidden value="@User.Identity.Name" />
+
+            <label asp-for="OsteologySkull.MaxCranialLength">Max Cranial Length</label>
+            <input asp-for="OsteologySkull.MaxCranialLength" value="@Model.OsteologySkull.MaxCranialLength" /><br />
+
+            <label asp-for="OsteologySkull.MaxCranialBreadth">Max Cranial Breadth</label>
+            <input asp-for="OsteologySkull.MaxCranialBreadth" value="@Model.OsteologySkull.MaxCranialBreadth" /><br />
+
+            <label asp-for="OsteologySkull.BasionBregmaHeight">Basion Bregma Height</label>
+            <input asp-for="OsteologySkull.BasionBregmaHeight" value="@Model.OsteologySkull.BasionBregmaHeight" /><br />
+
+            <label asp-for="OsteologySkull.BasionNasion">Basion Nasion</label>
+            <input asp-for="OsteologySkull.BasionNasion" value="@Model.OsteologySkull.BasionNasion" /><br />
+
+            <label asp-for="OsteologySkull.BasionProsthionLength">Basion Prosthion Length</label>
+            <input asp-for="OsteologySkull.BasionProsthionLength" value="@Model.OsteologySkull.BasionProsthionLength" /><br />
+
+            <label asp-for="OsteologySkull.NasionProsthion">Nasion Prosthion</label>
+            <input asp-for="OsteologySkull.NasionProsthion" value="@Model.OsteologySkull.NasionProsthion" /><br />
+
+            <label asp-for="OsteologySkull.MaxNasalBreadth">Max Nasal Breadth</label>
+            <input asp-for="OsteologySkull.MaxNasalBreadth" value="@Model.OsteologySkull.MaxNasalBreadth" /><br />
+
+            <label asp-for="OsteologySkull.InterorbitalBreadth">Interorbital Breadth</label>
+            <input asp-for="OsteologySkull.InterorbitalBreadth" value="@Model.OsteologySkull.InterorbitalBreadth" /><br />
+
+            <label asp-for="OsteologySkull.BizygomaticDiameter">Bizygomatic Diameter</label>
+            <input asp-for="OsteologySkull.BizygomaticDiameter" value="@Model.OsteologySkull.BizygomaticDiameter" /><br />
+
+            <label asp-for="OsteologySkull.CranialSuture">Cranial Suture</label>
+            <input asp-for="OsteologySkull.CranialSuture" value="@Model.OsteologySkull.CranialSuture" /><br />
+
+            <label asp-for="OsteologySkull.ZygomaticCrest">Zygomatic Crest</label>
+            <input asp-for="OsteologySkull.ZygomaticCrest" value="@Model.OsteologySkull.ZygomaticCrest" /><br />
+
+            <label asp-for="OsteologySkull.NuchalCrest">Nuchal Crest</label>
+            <input asp-for="OsteologySkull.NuchalCrest" value="@Model.OsteologySkull.NuchalCrest" /><br />
+
+            <label asp-for="OsteologySkull.Gonian">Gonian</label>
+            <input asp-for="OsteologySkull.Gonian" value="@Model.OsteologySkull.Gonian" /><br />
+
+            <label asp-for="OsteologySkull.ParietalBossing">Parietal Bossing</label>
+            <input asp-for="OsteologySkull.ParietalBossing" value="@Model.OsteologySkull.ParietalBossing" /><br />
+
+            <label asp-for="OsteologySkull.OrbitEdge">Orbit Edge</label>
+            <input asp-for="OsteologySkull.OrbitEdge" value="@Model.OsteologySkull.OrbitEdge" /><br />
+
+            <label asp-for="OsteologySkull.SupraorbitalRidges">Supraorbital Ridges</label>
+            <input asp-for="OsteologySkull.SupraorbitalRidges" value="@Model.OsteologySkull.SupraorbitalRidges" /><br />
+
+            <label asp-for="OsteologySkull.Robust">Robust</label>
+            <input asp-for="OsteologySkull.Robust" value="@Model.OsteologySkull.Robust" /><br />
+
+            <label asp-for="OsteologySkull.SkullTrauma">SkullTrauma</label>
+            <input asp-for="OsteologySkull.SkullTrauma" value="@Model.OsteologySkull.SkullTrauma" /><br />
+
+            <button type="submit">Add Skull Osteology Report</button><br /> <br />
+        }
+
+        <div asp-validation-summary="All"></div>
+    </form>
+</div>
