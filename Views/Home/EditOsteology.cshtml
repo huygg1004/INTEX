@@ -1,0 +1,88 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model OsteologyViewModel
+
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>BYU Fag el-Gamous Excavation Site</h1>
+                    <span class="subheading">Intex Application</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <form asp-action="EditOsteology" method="post">
+        @if (Model != null)
+        {
+            <input asp-for="Osteology.LastModifiedBy" hidden value="@User.Identity.Name" />
+
+            <h3>Osteology</h3>
+            @if (Model.Identifier != null)
+            {
+                <input asp-for="Identifier" hidden value="@Model.Identifier" />
+                <input asp-for="Osteology.CreatedBy" hidden value="@Model.Osteology.CreatedBy" />
+
+                <label asp-for="Osteology.BasilarSuture">Basilar Suture</label>
+                <input asp-for="Osteology.BasilarSuture" value="@Model.Osteology.BasilarSuture" /><br />
+                <label asp-for="Osteology.VentralArc">Ventral Arc</label>
+                <input asp-for="Osteology.VentralArc" value="@Model.Osteology.VentralArc" /><br />
+                <label asp-for="Osteology.SubpubicAngle">Subpubic Angle</label>
+                <input asp-for="Osteology.SubpubicAngle" value="@Model.Osteology.SubpubicAngle" /><br />
+                <label asp-for="Osteology.SciaticNotch">Sciatic Notch</label>
+                <input asp-for="Osteology.SciaticNotch" value="@Model.Osteology.SciaticNotch" /><br />
+                <label asp-for="Osteology.ForemanMagnum">Foreman Magnum</label>
+                <input asp-for="Osteology.ForemanMagnum" value="@Model.Osteology.ForemanMagnum" /><br />
+                <label asp-for="Osteology.BoneLength">Bone Length</label>
+                <input asp-for="Osteology.BoneLength" value="@Model.Osteology.BoneLength" /><br />
+                <label asp-for="Osteology.Osteophytosis">Osteophytosis</label>
+                <input asp-for="Osteology.Osteophytosis" value="@Model.Osteology.Osteophytosis" /><br />
+                <label asp-for="Osteology.ToothAttrition">Tooth Attrition</label>
+                <input asp-for="Osteology.ToothAttrition" value="@Model.Osteology.ToothAttrition" /><br />
+                <label asp-for="Osteology.ToothEruption">Tooth Eruption</label>
+                <input asp-for="Osteology.ToothEruption" value="@Model.Osteology.ToothEruption" /><br />
+
+                <button type="submit">Update Osteology Report</button><br /> <br />
+            }
+        }
+        else
+        {
+            @*this is the first time it is being created last modified and created are the same person*@
+            <input asp-for="Osteology.LastModifiedBy" hidden value="@User.Identity.Name" />
+            @*keep the created information the same*@
+            <input asp-for="Osteology.CreatedBy" hidden value="@User.Identity.Name" />
+
+            <label asp-for="Osteology.BasilarSuture">Basilar Suture</label>
+            <input asp-for="Osteology.BasilarSuture" value="@Model.Osteology.BasilarSuture" /><br />
+            <label asp-for="Osteology.VentralArc">Ventral Arc</label>
+            <input asp-for="Osteology.VentralArc" value="@Model.Osteology.VentralArc" /><br />
+            <label asp-for="Osteology.SubpubicAngle">Subpubic Angle</label>
+            <input asp-for="Osteology.SubpubicAngle" value="@Model.Osteology.SubpubicAngle" /><br />
+            <label asp-for="Osteology.SciaticNotch">Sciatic Notch</label>
+            <input asp-for="Osteology.SciaticNotch" value="@Model.Osteology.SciaticNotch" /><br />
+            <label asp-for="Osteology.ForemanMagnum">Foreman Magnum</label>
+            <input asp-for="Osteology.ForemanMagnum" value="@Model.Osteology.ForemanMagnum" /><br />
+            <label asp-for="Osteology.BoneLength">Bone Length</label>
+            <input asp-for="Osteology.BoneLength" value="@Model.Osteology.BoneLength" /><br />
+            <label asp-for="Osteology.Osteophytosis">Osteophytosis</label>
+            <input asp-for="Osteology.Osteophytosis" value="@Model.Osteology.Osteophytosis" /><br />
+            <label asp-for="Osteology.ToothAttrition">Tooth Attrition</label>
+            <input asp-for="Osteology.ToothAttrition" value="@Model.Osteology.ToothAttrition" /><br />
+            <label asp-for="Osteology.ToothEruption">Tooth Eruption</label>
+            <input asp-for="Osteology.ToothEruption" value="@Model.Osteology.ToothEruption" /><br />
+
+            <button type="submit">Add New Osteology Report</button><br /> <br />
+        }
+
+        <div asp-validation-summary="All"></div>
+    </form>
+</div>

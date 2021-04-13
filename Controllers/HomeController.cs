@@ -641,6 +641,94 @@ namespace Intex_app.Controllers
             }
             return View("Home");
         }
+
+        //osteology edit
+        [Authorize]
+        [HttpGet]
+        public IActionResult EditOsteology(string Id)
+        {
+            if (Id != null)
+            {
+                return View(new OsteologyViewModel
+                {
+                    Osteology = _context.Osteologies.FirstOrDefault(o => o.Id == Id),
+                    Identifier = Id
+                });
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [Authorize]
+        [HttpPost]
+        public IActionResult EditOsteology(OsteologyViewModel viewModel)
+        {
+            if (viewModel.Identifier != null)
+            {
+               
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).BasilarSuture = viewModel.Osteology.BasilarSuture;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).VentralArc = viewModel.Osteology.VentralArc;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).SubpubicAngle = viewModel.Osteology.SubpubicAngle;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).SciaticNotch = viewModel.Osteology.SciaticNotch;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).PubicBone = viewModel.Osteology.PubicBone;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).PreaurSulcus = viewModel.Osteology.PreaurSulcus;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).MedialIpramus = viewModel.Osteology.MedialIpramus;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).DorsalPitting = viewModel.Osteology.DorsalPitting;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).ForemanMagnum = viewModel.Osteology.ForemanMagnum;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).FemurHead = viewModel.Osteology.FemurHead;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).HumerusHead = viewModel.Osteology.HumerusHead;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).Osteophytosis = viewModel.Osteology.Osteophytosis;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).PubicSymphysis = viewModel.Osteology.PubicSymphysis;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).BoneLength = viewModel.Osteology.BoneLength;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).MedialClavicle = viewModel.Osteology.MedialClavicle;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).IliacCrest = viewModel.Osteology.IliacCrest;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).FemurDiameter = viewModel.Osteology.FemurDiameter;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).Humerus = viewModel.Osteology.Humerus;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).FemurLength = viewModel.Osteology.FemurLength;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).HumerusLength = viewModel.Osteology.HumerusLength;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).TibiaLength = viewModel.Osteology.TibiaLength;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).PostcraniaTrauma = viewModel.Osteology.PostcraniaTrauma;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).ToothAttrition = viewModel.Osteology.ToothAttrition;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).ToothEruption = viewModel.Osteology.ToothEruption;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).CreatedBy = viewModel.Osteology.CreatedBy;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.Osteology.LastModifiedBy;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+
+                _context.SaveChanges();
+            }
+            else
+            {
+                _context.Osteologies.Add(viewModel.Osteology);
+                _context.SaveChanges();
+
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                _context.SaveChanges();
+
+                return View("Demographic", viewModel.Identifier);
+            }
+            return View("Home");
+        }
+
+        //edit skull actions
+        [Authorize]
+        [HttpGet]
+        public IActionResult EditSkill(string Id)
+        {
+            if (Id != null)
+            {
+                return View(new OsteologyViewModel
+                {
+                    Osteology = _context.Osteologies.FirstOrDefault(o => o.Id == Id),
+                    Identifier = Id
+                });
+            }
+            else
+            {
+                return View();
+            }
+        }
+
         [Authorize]
         [HttpGet]
         public IActionResult Edit(string Id)
