@@ -48,7 +48,7 @@ namespace Intex_app.Controllers
                     var message = new System.Net.Mail.MailMessage();
                     message.To.Add(email);
                     message.Subject = "Verify Account";
-                    message.From = new MailAddress("teo1997@byu.edu");
+                    message.From = new MailAddress("noreply@impetusfactor.com");
 
                     var emailDomain = model.Email.Substring(model.Email.LastIndexOf('@'));
 
@@ -59,17 +59,17 @@ namespace Intex_app.Controllers
                     }
                     else
                     {
-                        message.Body = email + ",\n" + System.Environment.NewLine + "Thank you for registering with Gamous. Click link to verify" + "https://localhost:44303/account/verify/" + user.Id;
+                        message.Body = email + ",\n" + System.Environment.NewLine + "Thank you for registering with Gamous. Click link to verify " + "https://localhost:44303/account/VerifyAccount/?userId=" + user.Id;
                     }
                    
 
 
 
                     message.IsBodyHtml = true;
-                    var smtp = new SmtpClient("smtp.outlook.com", 587)
+                    var smtp = new SmtpClient("mail.impetusfactor.com", 587)
                     {
-                        Credentials = new NetworkCredential("teo1997@byu.edu", ""),
-                        EnableSsl = true
+                        Credentials = new NetworkCredential("noreply@impetusfactor.com", "blurgRider1165@b"),
+                        EnableSsl = true                        
                     };
                     smtp.Send(message);
                 }
@@ -79,11 +79,18 @@ namespace Intex_app.Controllers
                 }
                 //}
             }
-            return View();
+            return Ok(Response);
         }
+
+        [HttpGet]
+        public IActionResult SignOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
         [AllowAnonymous]
-        [HttpPost]
-        [Route("verify/{userId}")]
+        [HttpGet]
         public async Task<IActionResult> VerifyAccount(String userId)
         {
             var user = _userManager.Users.First(u => u.Id == userId);
@@ -96,7 +103,7 @@ namespace Intex_app.Controllers
                 //take them to the token page
                 return RedirectToAction("Token", "token");
             }
-            return RedirectToAction("Home", "Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
