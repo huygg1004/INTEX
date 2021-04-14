@@ -28,16 +28,14 @@
         <div class="col-8">
             <main role="main" class="pb-3">*@
 <div>
-    <h3>SQL server database login information</h3>
-    <p>Login username: huy123456</p>
-    <p>Password: 12345678</p>
-
     <div class="container">
-
-        <div class="row">
-            <a class="btn btn-primary btn-lg" asp-action="Edit">Add a new record</a>
-        </div>
-
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="row">
+                <a class="btn btn-primary btn-lg" asp-action="Edit">Add a new record</a>
+            </div>
+            <br/>
+        }
 
         <div class="row">
             <script type='text/javascript' src='https://10ay.online.tableau.com/javascripts/api/viz_v1.js'></script>

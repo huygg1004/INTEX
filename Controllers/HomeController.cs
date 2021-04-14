@@ -665,7 +665,7 @@ namespace Intex_app.Controllers
             }
             else
             {
-                return View();
+                return View(new LocationMeasurementViewModel());
             }
         }
         [Authorize]
@@ -736,7 +736,7 @@ namespace Intex_app.Controllers
             }
             else
             {
-                return View();
+                return View(new OsteologyViewModel());
             }
         }
         [Authorize]
@@ -807,7 +807,7 @@ namespace Intex_app.Controllers
             }
             else
             {
-                return View();
+                return View(new SkullViewModel());
             }
         }
         [Authorize]
@@ -873,7 +873,7 @@ namespace Intex_app.Controllers
             }
             else
             {
-                return View();
+                return View(new ArtifactViewModel());
             }
         }
 
@@ -936,7 +936,7 @@ namespace Intex_app.Controllers
             }
             else
             {
-                return View();
+                return View((new FieldNotesViewModel()));
             }
         }
         [Authorize]

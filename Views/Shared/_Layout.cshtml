@@ -43,15 +43,19 @@
                     <li class="nav-item">
                         <a asp-controller="Home" asp-action="arcgis">Interactive Database</a>
                     </li>
+                    <li class="nav-item">
+                        <a asp-controller="Home" asp-action="ViewBurialsPublic">View Burials</a>
+                    </li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            <a asp-controller="Home" asp-action="ViewBurialsPublic">View Burials</a>
-                        </li>
-                        <li class="nav-item">
                             <a asp-controller="Home" asp-action="PhotoUploadForm">Photo</a>
                         </li>
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Signout">Sign Out</a>
+                        </li>
                     }
+
                     else
                     {
                         @*only show sign in / sign up if they are not signed in*@

@@ -15,105 +15,102 @@
 
 <div class="container">
     <form asp-action="EditSkull" method="post">
-        @if (Model != null)
+
+
+        <h3>Osteology Skull Report</h3>
+        @if (Model.Identifier != null)
         {
-            <input asp-for="OsteologySkull.LastModifiedBy" hidden value="@User.Identity.Name" />
+            <input asp-for="Identifier" hidden value="@Model.Identifier" />
+            <input asp-for="OsteologySkull.CreatedBy" hidden value="@Model.OsteologySkull.CreatedBy" />
 
-            <h3>Osteology Skull Report</h3>
-            @if (Model.Identifier != null)
-            {
-                <input asp-for="Identifier" hidden value="@Model.Identifier" />
-                <input asp-for="OsteologySkull.CreatedBy" hidden value="@Model.OsteologySkull.CreatedBy" />
+            <div class="form-group">
+                <label asp-for="OsteologySkull.MaxCranialLength">Max Cranial Length</label>
+                <input class="form-control" asp-for="OsteologySkull.MaxCranialLength" value="@Model.OsteologySkull.MaxCranialLength" />
+            </div>
+            <div class="form-group">
 
-                <div class="form-group">
-                    <label asp-for="OsteologySkull.MaxCranialLength">Max Cranial Length</label>
-                    <input class="form-control" asp-for="OsteologySkull.MaxCranialLength" value="@Model.OsteologySkull.MaxCranialLength" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.MaxCranialBreadth">Max Cranial Breadth</label>
+                <input class="form-control" asp-for="OsteologySkull.MaxCranialBreadth" value="@Model.OsteologySkull.MaxCranialBreadth" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.MaxCranialBreadth">Max Cranial Breadth</label>
-                    <input class="form-control" asp-for="OsteologySkull.MaxCranialBreadth" value="@Model.OsteologySkull.MaxCranialBreadth" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.BasionBregmaHeight">Basion Bregma Height</label>
+                <input class="form-control" asp-for="OsteologySkull.BasionBregmaHeight" value="@Model.OsteologySkull.BasionBregmaHeight" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.BasionBregmaHeight">Basion Bregma Height</label>
-                    <input class="form-control" asp-for="OsteologySkull.BasionBregmaHeight" value="@Model.OsteologySkull.BasionBregmaHeight" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.BasionNasion">Basion Nasion</label>
+                <input class="form-control" asp-for="OsteologySkull.BasionNasion" value="@Model.OsteologySkull.BasionNasion" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.BasionNasion">Basion Nasion</label>
-                    <input class="form-control" asp-for="OsteologySkull.BasionNasion" value="@Model.OsteologySkull.BasionNasion" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.BasionProsthionLength">Basion Prosthion Length</label>
+                <input class="form-control" asp-for="OsteologySkull.BasionProsthionLength" value="@Model.OsteologySkull.BasionProsthionLength" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.BasionProsthionLength">Basion Prosthion Length</label>
-                    <input class="form-control" asp-for="OsteologySkull.BasionProsthionLength" value="@Model.OsteologySkull.BasionProsthionLength" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.NasionProsthion">Nasion Prosthion</label>
+                <input class="form-control" asp-for="OsteologySkull.NasionProsthion" value="@Model.OsteologySkull.NasionProsthion" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.NasionProsthion">Nasion Prosthion</label>
-                    <input class="form-control" asp-for="OsteologySkull.NasionProsthion" value="@Model.OsteologySkull.NasionProsthion" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.MaxNasalBreadth">Max Nasal Breadth</label>
+                <input class="form-control" asp-for="OsteologySkull.MaxNasalBreadth" value="@Model.OsteologySkull.MaxNasalBreadth" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.MaxNasalBreadth">Max Nasal Breadth</label>
-                    <input class="form-control" asp-for="OsteologySkull.MaxNasalBreadth" value="@Model.OsteologySkull.MaxNasalBreadth" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.InterorbitalBreadth">Interorbital Breadth</label>
+                <input class="form-control" asp-for="OsteologySkull.InterorbitalBreadth" value="@Model.OsteologySkull.InterorbitalBreadth" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.InterorbitalBreadth">Interorbital Breadth</label>
-                    <input class="form-control" asp-for="OsteologySkull.InterorbitalBreadth" value="@Model.OsteologySkull.InterorbitalBreadth" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.BizygomaticDiameter">Bizygomatic Diameter</label>
+                <input class="form-control" asp-for="OsteologySkull.BizygomaticDiameter" value="@Model.OsteologySkull.BizygomaticDiameter" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.BizygomaticDiameter">Bizygomatic Diameter</label>
-                    <input class="form-control" asp-for="OsteologySkull.BizygomaticDiameter" value="@Model.OsteologySkull.BizygomaticDiameter" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.CranialSuture">Cranial Suture</label>
+                <input class="form-control" asp-for="OsteologySkull.CranialSuture" value="@Model.OsteologySkull.CranialSuture" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.CranialSuture">Cranial Suture</label>
-                    <input class="form-control" asp-for="OsteologySkull.CranialSuture" value="@Model.OsteologySkull.CranialSuture" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.ZygomaticCrest">Zygomatic Crest</label>
+                <input class="form-control" asp-for="OsteologySkull.ZygomaticCrest" value="@Model.OsteologySkull.ZygomaticCrest" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.ZygomaticCrest">Zygomatic Crest</label>
-                    <input class="form-control" asp-for="OsteologySkull.ZygomaticCrest" value="@Model.OsteologySkull.ZygomaticCrest" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.NuchalCrest">Nuchal Crest</label>
+                <input class="form-control" asp-for="OsteologySkull.NuchalCrest" value="@Model.OsteologySkull.NuchalCrest" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.NuchalCrest">Nuchal Crest</label>
-                    <input class="form-control" asp-for="OsteologySkull.NuchalCrest" value="@Model.OsteologySkull.NuchalCrest" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.Gonian">Gonian</label>
+                <input class="form-control" asp-for="OsteologySkull.Gonian" value="@Model.OsteologySkull.Gonian" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.Gonian">Gonian</label>
-                    <input class="form-control" asp-for="OsteologySkull.Gonian" value="@Model.OsteologySkull.Gonian" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.ParietalBossing">Parietal Bossing</label>
+                <input class="form-control" asp-for="OsteologySkull.ParietalBossing" value="@Model.OsteologySkull.ParietalBossing" />
+            </div>
+            <div class="form-group">
 
-                    <label asp-for="OsteologySkull.ParietalBossing">Parietal Bossing</label>
-                    <input class="form-control" asp-for="OsteologySkull.ParietalBossing" value="@Model.OsteologySkull.ParietalBossing" />
-                </div>
-                <div class="form-group">
+                <label asp-for="OsteologySkull.OrbitEdge">Orbit Edge</label>
+                <input class="form-control" asp-for="OsteologySkull.OrbitEdge" value="@Model.OsteologySkull.OrbitEdge" />
+            </div>
+            <div class="form-group">
+                <label asp-for="OsteologySkull.SupraorbitalRidges">Supraorbital Ridges</label>
+                <input class="form-control" asp-for="OsteologySkull.SupraorbitalRidges" value="@Model.OsteologySkull.SupraorbitalRidges" />
+            </div>
+            <div class="form-group">
+                <label asp-for="OsteologySkull.Robust">Robust</label>
+                <input class="form-control" asp-for="OsteologySkull.Robust" value="@Model.OsteologySkull.Robust" />
+            </div>
+            <div class="form-group">
+                <label asp-for="OsteologySkull.SkullTrauma">SkullTrauma</label>
+                <input class="form-control" asp-for="OsteologySkull.SkullTrauma" value="@Model.OsteologySkull.SkullTrauma" />
+            </div>
 
-                    <label asp-for="OsteologySkull.OrbitEdge">Orbit Edge</label>
-                    <input class="form-control" asp-for="OsteologySkull.OrbitEdge" value="@Model.OsteologySkull.OrbitEdge" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="OsteologySkull.SupraorbitalRidges">Supraorbital Ridges</label>
-                    <input class="form-control" asp-for="OsteologySkull.SupraorbitalRidges" value="@Model.OsteologySkull.SupraorbitalRidges" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="OsteologySkull.Robust">Robust</label>
-                    <input class="form-control" asp-for="OsteologySkull.Robust" value="@Model.OsteologySkull.Robust" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="OsteologySkull.SkullTrauma">SkullTrauma</label>
-                    <input class="form-control" asp-for="OsteologySkull.SkullTrauma" value="@Model.OsteologySkull.SkullTrauma" />
-                </div>
-
-                <button type="submit">Update Skull Osteology Report</button><br /> <br />
-            }
+            <button type="submit">Update Skull Osteology Report</button><br /> <br />
         }
         else
         {
@@ -210,6 +207,19 @@
             </div>
 
             <button type="submit">Add Skull Osteology Report</button><br /> <br />
+        }
+
+        @if (Model != null)
+        {
+            <input asp-for="OsteologySkull.LastModifiedBy" hidden value="@User.Identity.Name" />
+        }
+        else
+        {
+            @*this is the first time it is being created last modified and created are the same person*@
+            <input asp-for="OsteologySkull.LastModifiedBy" hidden value="@User.Identity.Name" />
+            @*keep the created information the same*@
+            <input asp-for="OsteologySkull.CreatedBy" hidden value="@User.Identity.Name" />
+
         }
 
         <div asp-validation-summary="All"></div>
