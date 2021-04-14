@@ -722,7 +722,7 @@ namespace Intex_app.Controllers
                 //route to the osteology entry view
                 return View("Demographic", viewModel.Identifier);
             }
-            return View("Home");
+            return RedirectToAction("Index");
         }
 
         //osteology edit
@@ -792,10 +792,9 @@ namespace Intex_app.Controllers
                 _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
                 _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                 _context.SaveChanges();
-
                 return View("EditSkull", viewModel.Identifier);
             }
-            return View("Home");
+            return RedirectToAction("Index");
         }
 
         //edit skull actions
@@ -863,7 +862,7 @@ namespace Intex_app.Controllers
 
                 return View("EditArtifactBio", viewModel.Identifier);
             }
-            return View("Home");
+            return RedirectToAction("Index");
         }
 
         //edit bio notes
@@ -926,7 +925,7 @@ namespace Intex_app.Controllers
 
                 return View("ViewBurialPublic");
             }
-            return View("Home");
+            return RedirectToAction("Index");
         }
 
         //EDIT DATA INFORMATION
