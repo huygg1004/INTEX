@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Intex_app.Controllers
@@ -28,6 +29,39 @@ namespace Intex_app.Controllers
         {
 
             return View();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Admin()
+        {
+            var user = _userManager.FindByEmailAsync(this.User.FindFirst(ClaimTypes.Email).Value).Result;
+            if (user.Admin == true)
+            {
+                return View(_userManager.Users);
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Remove(string userToDeleteEmail)
+        {
+            var user = _userManager.FindByEmailAsync(this.User.FindFirst(ClaimTypes.Email).Value).Result;
+            if (user.Admin == true)
+            {
+                var userToDelete = _userManager.FindByEmailAsync(userToDeleteEmail).Result;
+                _userManager.DeleteAsync(userToDelete);
+                
+                return RedirectToAction("Admin");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [AllowAnonymous]
@@ -81,7 +115,7 @@ namespace Intex_app.Controllers
             }
             return Ok(Response);
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult SignOut()
         {

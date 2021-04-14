@@ -17,6 +17,7 @@ using System.Xml;
 using System.Text;
 using System.Net;
 using com.sun.org.apache.xml.@internal.resolver.helpers;
+using System.Security.Claims;
 
 namespace Intex_app.Controllers
 {
@@ -643,7 +644,8 @@ namespace Intex_app.Controllers
                 _context.SaveChanges();
                 //set timestamp
 
-                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                 _context.SaveChanges();
 
                 //either take them to location measurement or we shouldnt allow this
@@ -697,7 +699,8 @@ namespace Intex_app.Controllers
                 _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).Cluster = viewModel.LocationMeasurement.Cluster;
                 _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).BurialRack = viewModel.LocationMeasurement.BurialRack;
                 _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.LocationMeasurement.LastModifiedBy;
-                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
 
 
                 _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).Id = recalculatedIdentifier;
@@ -712,7 +715,8 @@ namespace Intex_app.Controllers
                 _context.SaveChanges();
                 //set timestamp
 
-                _context.LocationMeasurements.FirstOrDefault(o => o.Id == calculatedIdentifier).LastModifiedTimestamp = DateTime.Now;
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == calculatedIdentifier).LastModifiedTimestamp = DateTime.Now; 
+                _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                 _context.SaveChanges();
 
                 //route to the osteology entry view
@@ -773,7 +777,8 @@ namespace Intex_app.Controllers
                     _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).ToothEruption = viewModel.Osteology.ToothEruption;
                     _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).CreatedBy = viewModel.Osteology.CreatedBy;
                     _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.Osteology.LastModifiedBy;
-                    _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                    _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                    _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
 
                     _context.SaveChanges();
                     return View();
@@ -784,7 +789,8 @@ namespace Intex_app.Controllers
                 _context.Osteologies.Add(viewModel.Osteology);
                 _context.SaveChanges();
 
-                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                 _context.SaveChanges();
 
                 return View("EditSkull", viewModel.Identifier);
@@ -838,7 +844,8 @@ namespace Intex_app.Controllers
                     _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).SkullTrauma = viewModel.OsteologySkull.SkullTrauma;
                     _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).CreatedBy = viewModel.OsteologySkull.CreatedBy;
                     _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.OsteologySkull.LastModifiedBy;
-                    _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                    _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                    _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
 
                     _context.SaveChanges();
 
@@ -850,7 +857,8 @@ namespace Intex_app.Controllers
                 _context.OsteologySkulls.Add(viewModel.OsteologySkull);
                 _context.SaveChanges();
 
-                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                 _context.SaveChanges();
 
                 return View("EditArtifactBio", viewModel.Identifier);
@@ -896,8 +904,9 @@ namespace Intex_app.Controllers
                     _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).BurialWraping = viewModel.ArtifactBioNote.BurialWraping;
                     _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).PreservationIndex = viewModel.ArtifactBioNote.PreservationIndex;
                     _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).CreatedBy = viewModel.ArtifactBioNote.CreatedBy;
-                    _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.ArtifactBioNote.LastModifiedBy;
-                    _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                    _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
+                    _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                    _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
 
                     _context.SaveChanges();
 
@@ -909,7 +918,10 @@ namespace Intex_app.Controllers
                 _context.ArtifactBioNotes.Add(viewModel.ArtifactBioNote);
                 _context.SaveChanges();
 
-                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
+                
+
                 _context.SaveChanges();
 
                 return View("ViewBurialPublic");
@@ -971,7 +983,8 @@ namespace Intex_app.Controllers
                     _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).Cluster = viewModel.LocationMeasurement.Cluster;
                     _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).BurialRack = viewModel.LocationMeasurement.BurialRack;
                     _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.LocationMeasurement.LastModifiedBy;
-                    _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                    _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                    _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                     _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).Id = recalculatedIdentifier;
                     _context.SaveChanges();
                 }
@@ -983,7 +996,8 @@ namespace Intex_app.Controllers
                     _context.LocationMeasurements.Add(viewModel.LocationMeasurement);
                     _context.SaveChanges();
                     //set timestamp
-                    _context.LocationMeasurements.FirstOrDefault(o => o.Id == calculatedIdentifier).LastModifiedTimestamp = DateTime.Now;
+                    _context.LocationMeasurements.FirstOrDefault(o => o.Id == calculatedIdentifier).LastModifiedTimestamp = DateTime.Now; 
+                    _context.LocationMeasurements.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                     _context.SaveChanges();
                 }
 
@@ -1016,14 +1030,16 @@ namespace Intex_app.Controllers
                     _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).ToothEruption = viewModel.Osteology.ToothEruption;
                     _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).CreatedBy = viewModel.Osteology.CreatedBy;
                     _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.Osteology.LastModifiedBy;
-                    _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                    _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                    _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                     _context.SaveChanges();
                 }
                 else
                 {
                     _context.Osteologies.Add(viewModel.Osteology);
                     _context.SaveChanges();
-                    _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                    _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                    _context.Osteologies.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                     _context.SaveChanges();
                 }
 
@@ -1049,14 +1065,16 @@ namespace Intex_app.Controllers
                     _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).SkullTrauma = viewModel.OsteologySkull.SkullTrauma;
                     _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).CreatedBy = viewModel.OsteologySkull.CreatedBy;
                     _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.OsteologySkull.LastModifiedBy;
-                    _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                    _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                    _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                     _context.SaveChanges();
                 }
                 else
                 {
                     _context.OsteologySkulls.Add(viewModel.OsteologySkull);
                     _context.SaveChanges();
-                    _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                    _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                    _context.OsteologySkulls.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                     _context.SaveChanges();
                 }
 
@@ -1075,13 +1093,15 @@ namespace Intex_app.Controllers
                     _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).CreatedBy = viewModel.ArtifactBioNote.CreatedBy;
                     _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = viewModel.ArtifactBioNote.LastModifiedBy;
                     _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                    _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                     _context.SaveChanges();
                 }
                 else
                 {
                     _context.ArtifactBioNotes.Add(viewModel.ArtifactBioNote);
                     _context.SaveChanges();
-                    _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now;
+                    _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedTimestamp = DateTime.Now; 
+                    _context.ArtifactBioNotes.FirstOrDefault(o => o.Id == viewModel.Identifier).LastModifiedBy = User.FindFirst(ClaimTypes.Email).Value;
                     _context.SaveChanges();
                 }
 
