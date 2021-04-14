@@ -16,6 +16,7 @@ using Intex_app.Infrastructure;
 using System.Xml;
 using System.Text;
 using System.Net;
+using com.sun.org.apache.xml.@internal.resolver.helpers;
 
 namespace Intex_app.Controllers
 {
@@ -24,15 +25,17 @@ namespace Intex_app.Controllers
         private readonly ILogger<HomeController> _logger;
         //public Token _token { get; set; }
         private GamousContext _context { get; set; }
+        private PhotoContext _contextphoto { get; set; }
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly S3interface _s3; 
-        public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, GamousContext context,S3interface s3)//, Token token)
+        public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, GamousContext context,S3interface s3, PhotoContext contextphoto)//, Token token)
         {
             _logger = logger;
             _userManager = userManager;
             //_token = token;
             _context = context;
             _s3 = s3;
+            _contextphoto = contextphoto;
         }
 
         public IActionResult Index()
@@ -44,43 +47,71 @@ namespace Intex_app.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> PhotoSave(Photo savedPhoto)
-        //{
-        //    if(ModelState.IsValid)
-        //    {
-        //        string url = await _s3.AddItem(savedPhoto.uploadphoto, "testing");
+        [HttpPost]
+        public async Task<IActionResult> PhotoSave(Photo savedPhoto)
+        {
+            if (ModelState.IsValid)
+            {
+                string url = await _s3.AddItem(savedPhoto.uploadphoto, "testing");
 
-        //        return Redirect("ViewPhotos");
-        //    }
-        //    else
-        //    {
-        //        return View("PhotoUploadForm");
-        //    }
-        //}
+                savedPhoto.photoUrl = url;
 
-        //public IActionResult ViewPhotos()
-        //{
-        //    return View();
-        //}
+                Photo newPhoto = new Photo()
+                {
+                    PhotoID = savedPhoto.PhotoID,
+                    BurialSiteID = savedPhoto.BurialSiteID,
+                    photoUrl = savedPhoto.photoUrl
+                };
+
+                _contextphoto.Add(newPhoto);
+                _contextphoto.SaveChanges();
+
+                ViewBag.Url = url;
+
+                List<Photo> listPhoto = new List<Photo>();
+                listPhoto = _contextphoto.Photos.FromSqlRaw("SELECT * FROM Photos;").ToList();
+
+                //return View("ViewPhotos", ViewBag.Url);
+                return View("ViewPhotos",listPhoto);
+                //return View("ViewPhotos",new Photo
+                //{
+                //  photoUrl = url,
+                //  BurialSiteID = newPhoto.BurialSiteID
+                //});
+                //return View("ViewPhotos");
+
+
+            }
+            else
+            {
+                return View("PhotoUploadForm");
+            }
+        }
 
         public IActionResult PhotoUploadForm()
         {
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PhotoUploadForm(StorageUploadForm file)
+        public IActionResult ViewPhotos()
         {
-            using (var memoryStream = new MemoryStream())
-            {
-                await file.photofile.CopyToAsync(memoryStream);
-
-                await StorageUpload.UploadFileAsync(memoryStream, "YOUR_BUCKET_NAME", "YOUR_KEY_NAME");
-            }
-
-            return View();
+            return View(_contextphoto);
         }
+
+       
+
+        //[HttpPost]
+        //public async Task<IActionResult> PhotoUploadForm(StorageUploadForm file)
+        //{
+        //    using (var memoryStream = new MemoryStream())
+        //    {
+        //        await file.photofile.CopyToAsync(memoryStream);
+
+        //        await StorageUpload.UploadFileAsync(memoryStream, "YOUR_BUCKET_NAME", "YOUR_KEY_NAME");
+        //    }
+
+        //    return View();
+        //}
 
         //public IActionResult ViewBurialsPublic(long? id)
         //{

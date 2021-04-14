@@ -14,6 +14,7 @@ namespace Intex_app.Models
         public int PhotoID { get; set; }
         [NotMapped]
         public IFormFile uploadphoto { get; set; }
+        public string photoUrl { get; set; }
         public string BurialSiteID { get; set; }
     }
 }

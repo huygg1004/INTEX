@@ -4,22 +4,22 @@
 @{
 }
 
-@model StorageUploadForm
+@model Photo
 
-<h1>Upload a Photo for your Burial Site</h1>
+<h1>Upload a Photo</h1>
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" asp-action="PhotoSave">
     <div>
-        <label asp-for="photofile">Photo Upload Here</label>
-        <input type="file" asp-for="photofile" />
+        <label asp-for="uploadphoto">Photo Upload Here</label>
+        <input type="file" asp-for="uploadphoto" />
     </div>
     <br />
-    @*<div>
-        <label asp-for="photofile">Burial Site ID</label>
+    <div>
+        <label asp-for="BurialSiteID">Burial Site ID</label>
         <input type="text" asp-for="BurialSiteID" />
-    </div>*@
+    </div>
 
-    @*<button class="btn-danger" type="submit">Upload</button>*@
+    <button class="btn-danger" type="submit">upload</button>
 
-    <input asp-page-handler="Upload" class="btn-danger" type="submit" value="Upload" />
+    @*<input asp-page-handler="Upload" class="btn-danger" type="submit" value="Upload" />*@
 </form>
