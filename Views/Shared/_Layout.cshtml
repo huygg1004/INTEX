@@ -41,28 +41,16 @@
                         <a asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="Home" asp-action="ViewBurialsPublic">View Burials - General</a>
-                    </li>
-                    <li class="nav-item">
                         <a asp-controller="Home" asp-action="arcgis">Interactive Database</a>
                     </li>
-                    <li class="nav-item">
-                        <a asp-controller="Home" asp-action="PhotoUploadForm">Photo</a>
-                    </li>
-
-
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            <a asp-controller="Home" asp-action="ViewBurialsResearchers">View Burials - Researchers</a>
+                            <a asp-controller="Home" asp-action="ViewBurialsPublic">View Burials</a>
                         </li>
                         <li class="nav-item">
-                            <a asp-controller="Home" asp-action="ResearchersTools">Researchers Tools</a>
+                            <a asp-controller="Home" asp-action="PhotoUploadForm">Photo</a>
                         </li>
-
-                        @*<li class="nav-item">
-                <a asp-controller="Home" asp-action="TestForm">Edit Form</a>
-            </li>*@
                     }
                     else
                     {
