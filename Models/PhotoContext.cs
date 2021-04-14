@@ -13,6 +13,16 @@ namespace Intex_app.Models
 
         }
 
+        public PhotoContext()
+        {
+
+        }
+
+        public static PhotoContext Create()
+        {
+            return new PhotoContext();
+        }
+
         public DbSet<Photo> Photos { get; set; }
     }
 }
