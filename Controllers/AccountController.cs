@@ -59,7 +59,7 @@ namespace Intex_app.Controllers
                     }
                     else
                     {
-                        message.Body = email + ",\n" + System.Environment.NewLine + "Thank you for registering with Gamous. Click link to verify " + "https://localhost:44303/account/VerifyAccount/?userId=" + user.Id;
+                        message.Body = email + ",\n" + System.Environment.NewLine + "Thank you for registering with Gamous. Click link to verify " + "https://intex-final.huynhatdoan.com/ccount/VerifyAccount/?userId=" + user.Id;
                     }
                    
 
