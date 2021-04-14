@@ -59,7 +59,7 @@ namespace Intex_app.Controllers
                     }
                     else
                     {
-                        message.Body = email + ",\n" + System.Environment.NewLine + "Thank you for registering with Gamous. Click link to verify" + "https://localhost:44303/account/verify/" + user.Id;
+                        message.Body = email + ",\n" + System.Environment.NewLine + "Thank you for registering with Gamous. Click link to verify " + "https://localhost:44303/account/VerifyAccount/?userId=" + user.Id;
                     }
                    
 
@@ -90,8 +90,7 @@ namespace Intex_app.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
-        [Route("verify/{userId}")]
+        [HttpGet]
         public async Task<IActionResult> VerifyAccount(String userId)
         {
             var user = _userManager.Users.First(u => u.Id == userId);
