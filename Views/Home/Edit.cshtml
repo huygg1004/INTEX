@@ -532,7 +532,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="OsteologySkull.SkullTrauma">SkullTrauma</label>
-                <input class="form-control" asp-for="OsteologySkull.SkullTrauma" value="@Model.OsteologySkull.SkullTrauma" />
+                <section class="form-control" asp-for="OsteologySkull.SkullTrauma" value="@Model.OsteologySkull.SkullTrauma">
+                    <option value="">--Select One--</option>
+
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </section>
             </div>
         }
         else
@@ -626,7 +631,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="OsteologySkull.SkullTrauma">SkullTrauma</label>
-                <input class="form-control" asp-for="OsteologySkull.SkullTrauma" />
+                <section class="form-control" asp-for="OsteologySkull.SkullTrauma">
+                    <option value="">--Select One--</option>
+
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </section>
             </div>
 
 
