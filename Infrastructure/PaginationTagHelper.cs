@@ -55,7 +55,7 @@ namespace Intex_app.Infrastructure
                 TagBuilder individualTag = new TagBuilder("a");
 
                 KeyValuePairs["pageNum"] = i;
-                individualTag.Attributes["href"] = urlHelp.Action("ViewBurialsPublic", KeyValuePairs);
+                individualTag.Attributes["href"] = urlHelp.Action("ViewBurialsResearchers", KeyValuePairs);
                 individualTag.InnerHtml.Append(i.ToString());
 
                 //CSS FOR pagination
